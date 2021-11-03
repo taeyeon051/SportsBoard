@@ -1,0 +1,34 @@
+#login-page,
+#register-page {
+    min-height: 580px;
+}
+
+#login-page {
+    padding-top: 80px;
+}
+
+#register-page {
+    padding-top: 30px;
+}
+
+.login,
+.register {
+    width: 450px;
+    margin: 20px auto;
+}
+
+.form {
+    margin: 35px 0;
+}
+
+#login-form>*,
+#register-form>* {
+    width: 100%;
+    height: 50px;
+    margin: 15px 0;
+}
+
+#login-btn,
+#register-btn {
+    font-size: 18px;
+}

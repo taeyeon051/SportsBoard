@@ -1,0 +1,72 @@
+#write {
+    min-height: 600px;
+    padding-bottom: 70px;
+}
+
+.write-header {
+    width: 800px;
+}
+
+#write .btns .btn {
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+.write-area {
+    width: 800px;
+    position: relative;
+}
+
+.ex-box {
+    width: 400px;
+    height: 60px;
+    position: absolute;
+    top: 100px;
+    z-index: 100;
+    background-color: #fff;
+    border: 1px solid #e6e5e8;
+    display: none;
+}
+
+.upload.ex-box {
+    top: 39px;
+}
+
+.ex-box>.inner {
+    padding: 8px 15px;
+    position: relative;
+    font-size: 14px;
+}
+
+.close-exbox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#content {
+    height: auto;
+    min-height: 700px;
+}
+
+.thumbnail-image {
+    width: 480px;
+    height: 280px;
+    border: 1px solid #e9e9e9;
+}
+
+.thumbnail-image>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(80%);
+}
+
+.select-area {
+    width: 280px;
+}

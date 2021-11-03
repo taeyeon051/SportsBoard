@@ -1,0 +1,73 @@
+/* 글 */
+
+#view {
+    padding: 60px 0 100px;
+}
+
+.view-header {
+    padding: 0 70px 30px 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.view-title {
+    word-break: break-all;
+}
+
+.view-date {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #999;
+}
+
+.view-body {
+    margin-top: 50px;
+    padding: 0 100px 0 50px;
+}
+
+.view-content {
+    margin-top: 70px;
+}
+
+
+/* 영상 */
+
+#video-view {
+    padding: 70px 0 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#video-view iframe {
+    width: 1000px;
+    height: 600px;
+}
+
+#video-view video {
+    width: 1000px;
+    height: 600px;
+    object-fit: cover;
+    border: none;
+    outline: none;
+}
+
+.video-text {
+    width: 1000px;
+    margin-top: 30px;
+}
+
+.view-date {
+    display: flex;
+    margin-top: 15px;
+}
+
+.video-view {
+    margin-right: 20px;
+}
+
+.video-view,
+.video-date {
+    font-size: 14px;
+    color: #999;
+}
