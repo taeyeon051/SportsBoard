@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/main/*")
+@WebServlet(urlPatterns = {"/main/*", "/user/*"})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Controller> controllerMap = new HashMap<>();
@@ -20,9 +20,9 @@ public class FrontController extends HttpServlet {
     }
 
 	public void init(ServletConfig config) throws ServletException {
-		controllerMap.put("/main/register", new RegisterController());
-		controllerMap.put("/main/login", new LoginController());
-		controllerMap.put("/main/logout", new LogoutController());
+		controllerMap.put("/user/register", new RegisterController());
+		controllerMap.put("/user/login", new LoginController());
+		controllerMap.put("/user/logout", new LogoutController());
 		controllerMap.put("/main/baseball", new MainPageController());
 	}
 
@@ -36,7 +36,6 @@ public class FrontController extends HttpServlet {
 		
 		Controller controller = controllerMap.get(path);
 		if (controller == null) {
-			System.out.println(controller);
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
