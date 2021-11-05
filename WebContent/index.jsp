@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
+<head>
+	<link rel="stylesheet" href="<%=path%>/css/main.css">
+</head>
 
 <!-- 메인 영역 -->
 <section id="main" class="d-flex justify-content-between pt-4 pb-3 mb-3">
