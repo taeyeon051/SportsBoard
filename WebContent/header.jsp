@@ -1,3 +1,4 @@
+<%@page import="vo.UserVO"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,7 +18,7 @@
 
 <body>
 <%
-
+	UserVO user = (UserVO) session.getAttribute("user");
 	if (request.getAttribute("alert") != null) {
 %>		
 		<script>
@@ -29,8 +30,13 @@
 
     <div class="top-menu d-flex align-items-center">
         <div class="d-flex justify-content-end mx-auto">
-            <a href="<%= path %>/user/login" class="top-menu-btn">로그인</a>
-            <a href="<%= path %>/user/register" class="top-menu-btn">회원가입</a>
+        	<% if (user != null) { %>
+        		<span class="user-name"><%= user.getUserName() %>님</span>
+        		<a href="<%= path %>/user/logout" class="top-menu-btn">로그아웃</a>
+      		<% } else { %>
+            	<a href="<%= path %>/user/login" class="top-menu-btn">로그인</a>
+            	<a href="<%= path %>/user/register" class="top-menu-btn">회원가입</a>
+            <% } %>
         </div>
     </div>
 

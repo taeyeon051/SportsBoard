@@ -13,12 +13,10 @@
     padding: 35px 0 50px;
 }
 
-a,
-a:hover {
+a, a:hover {
     text-decoration: none;
     color: #000;
 }
-
 
 /* top menu */
 
@@ -30,6 +28,14 @@ a:hover {
 
 .top-menu>div {
     width: 1100px;
+}
+
+.top-menu .user-name {
+    font-size: 12px;
+    color: #666;
+    padding: 3px 7px;
+    margin: 0 5px;
+    cursor: default;
 }
 
 .top-menu-btn {
@@ -45,7 +51,6 @@ a:hover {
     color: #666;
 }
 
-
 /* 헤더 영역 */
 
 header {
@@ -60,7 +65,6 @@ header>.input-group {
 #search {
     font-size: 12px;
 }
-
 
 /* 메뉴 영역 */
 
@@ -80,12 +84,10 @@ header>.input-group {
     font-weight: bold;
 }
 
-.inner-menu>a:hover,
-.inner-menu>a.selected {
+.inner-menu>a:hover, .inner-menu>a.selected {
     color: #e12d1c;
     border-bottom: 3px solid #e12d1c;
 }
-
 
 /* 서브 메뉴 영역 */
 
@@ -111,11 +113,9 @@ header>.input-group {
     margin-right: 20px;
 }
 
-#submenu>a.selected,
-#submenu>a:hover {
+#submenu>a.selected, #submenu>a:hover {
     border-bottom: 3px solid #fff;
 }
-
 
 /* 푸터 영역 */
 
