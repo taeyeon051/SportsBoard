@@ -5,15 +5,25 @@
     <link rel="stylesheet" href="<%=path%>/css/login.css">
 </head>
 
+<%
+	if (user != null) {
+%>
+		<script>
+			location.href = "/SportsBoard/main/baseball";
+		</script>
+<%		
+	}
+%>
+
 <!-- 회원가입 페이지 -->
 <section id="register-page">
 	<div class="register position-relative text-center pt-4">
 		<h3><b>회원가입</b></h3>
-        <form action="<%= path %>/user/register" method="POST" id="register-form" class="form">
-        	<input type="text" id="id" name="id" class="form-control" placeholder="아이디" required>
-            <input type="text" id="name" name="name" class="form-control" placeholder="이름" required>
-            <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required>
-            <input type="password" id="passwordc" name="passwordc" class="form-control" placeholder="비밀번호 확인" required>
+        <form action="<%= path %>/user/register" method="POST" class="form">
+        	<input type="text" name="id" class="form-control" placeholder="아이디" required>
+            <input type="text" name="name" class="form-control" placeholder="이름" required>
+            <input type="password" name="password" class="form-control" placeholder="비밀번호" required>
+            <input type="password" name="passwordc" class="form-control" placeholder="비밀번호 확인" required>
             <button id="register-btn" class="btn btn-dark m-0">회원가입</button>
 		</form>
 	</div>

@@ -16,3 +16,4 @@ insert into users values(users_seq.nextval, 'admin', '관리자', '1234');
 select * from users;
 
 -- user table (login) --
+select * from users where userId = ? and userPwd = ?
