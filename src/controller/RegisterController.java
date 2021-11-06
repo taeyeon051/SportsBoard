@@ -26,7 +26,7 @@ public class RegisterController implements Controller {
 		}
 		
 		UserDAO dao = new UserDAO();
-		boolean user = dao.userCheck(request.getParameter("id"));
+		boolean user = dao.userCheck(id);
 		
 		if (!user) {
 			int n = dao.userRegister(id, name, pwd);
