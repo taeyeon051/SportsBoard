@@ -80,7 +80,7 @@ header>.input-group {
 .inner-menu>a {
     height: 100%;
     line-height: 70px;
-    margin-right: 15px;
+    margin-right: 20px;
     font-weight: bold;
 }
 
@@ -132,7 +132,7 @@ footer {
 }
 
 .footer-menu {
-    width: 420px;
+    width: 500px;
 }
 
 .footer-menu a {

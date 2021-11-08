@@ -5,6 +5,12 @@
 	<link rel="stylesheet" href="<%=path%>/css/main.css">
 </head>
 
+<script>
+	<% if (request.getRequestURI().equals("/SportsBoard/")) { %> 
+		location.href = "/SportsBoard/main?item=home";
+	<% } %>
+</script>
+
 <!-- 메인 영역 -->
 <section id="main" class="d-flex justify-content-between pt-4 pb-3 mb-3">
 	<div class="photo-news">
