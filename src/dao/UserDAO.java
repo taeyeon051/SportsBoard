@@ -41,7 +41,7 @@ public class UserDAO {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into users values(users_seq.nextval, ?, ?, ?)";
+		String sql = "insert into users values(?, ?, ?)";
 		String shaPwd = SHA256.encodeSha256(pwd);
 		
 		conn = JdbcUtil.getConnection();
@@ -78,7 +78,6 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				vo = new UserVO();
-				vo.setId(rs.getInt("id"));
 				vo.setUserId(rs.getString("userId"));
 				vo.setUserName(rs.getString("userName"));
 				vo.setUserPwd(rs.getString("userPwd"));
