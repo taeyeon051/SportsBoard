@@ -10,7 +10,7 @@ public class MainPageController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		return new MyView("/index.jsp");
 	}
 
