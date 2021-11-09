@@ -73,6 +73,7 @@
                 <a href="<%= path %>/main?item=worldbaseball" class="<%= item.equals("worldbaseball") ? "selected" : "" %>">해외야구</a>
                 <a href="<%= path %>/main?item=soccer" class="<%= item.equals("soccer") ? "selected" : "" %>">축구</a>
                 <a href="<%= path %>/main?item=worldsoccer" class="<%= item.equals("worldsoccer") ? "selected" : "" %>">해외축구</a>
+                <a href="<%= path %>/main?item=golf" class="<%= item.equals("golf") ? "selected" : "" %>">골프</a>
                 <a href="<%= path %>/main?item=basketball" class="<%= item.equals("basketball") ? "selected" : "" %>">농구</a>
                 <a href="<%= path %>/main?item=volleyball" class="<%= item.equals("volleyball") ? "selected" : "" %>">배구</a>
             </div>

@@ -11,6 +11,7 @@
                 <a href="<%= request.getContextPath() %>/main?item=worldbaseball">해외야구</a>
                 <a href="<%= request.getContextPath() %>/main?item=soccer">축구</a>
                 <a href="<%= request.getContextPath() %>/main?item=worldsoccer">해외축구</a>
+                <a href="<%= request.getContextPath() %>/main?item=golf">골프</a>
                 <a href="<%= request.getContextPath() %>/main?item=basketball">농구</a>
                 <a href="<%= request.getContextPath() %>/main?item=volleyball">배구</a>
             </div>
