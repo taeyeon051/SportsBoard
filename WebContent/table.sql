@@ -44,6 +44,10 @@ insert into sports values (7, '배구', 'volleyball');
 select * from sports;
 select * from teams;
 
+select s.s_code, s.ko_sports_name, t.team
+from sports s, teams t
+where s.s_code = t.s_code;
+
 
 
 
