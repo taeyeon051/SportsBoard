@@ -70,3 +70,7 @@
 .select-area {
     width: 280px;
 }
+
+.team-list .btn {
+    height: 45px;
+}
