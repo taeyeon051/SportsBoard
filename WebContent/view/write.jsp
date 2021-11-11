@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%
+	boolean isTeamList = false;
+	ArrayList<String> teamList = (ArrayList) request.getAttribute("teamList");
+	if (teamList.size() > 0) isTeamList = true; 
+%>
 <head>
     <link rel="stylesheet" href="<%=path%>/css/write.css">
+    <% if (teamList.size() > 0 && (teamList.contains("LA 다저스") || teamList.contains("첼시 FC"))) { %>
+		<link rel="stylesheet" href="<%=path%>/css/wb.css">
+    <% } %>
 </head>
 
-<%
+<%	
 	if (user == null) {
 %>
 		<script>
@@ -61,20 +69,15 @@
             <div contenteditable="true" id="content" class="form-control" spellcheck="false"></div>
         </div>
         <div class="select-area">
-            <h5 class="fw-bold text-center">관련 팀 선택</h5>
-            <div class="team-list w-100 mt-2 btn-group-vertical">
-                <button class="btn btn-outline-dark active">KT</button>
-                <button class="btn btn-outline-dark">LG</button>
-                <button class="btn btn-outline-dark">삼성</button>
-                <button class="btn btn-outline-dark">두산</button>
-                <button class="btn btn-outline-dark">키움</button>
-                <button class="btn btn-outline-dark">SSG</button>
-                <button class="btn btn-outline-dark">NC</button>
-                <button class="btn btn-outline-dark">롯데</button>
-                <button class="btn btn-outline-dark">KIA</button>
-                <button class="btn btn-outline-dark">한화</button>
-            </div>
-            <h5 class="fw-bold text-center mt-5">관련 선수 선택</h5>
+        	<% if (isTeamList) { %>
+            	<h5 class="fw-bold text-center">관련 팀 선택</h5>
+            	<div class="team-list w-100 mt-2 <%= teamList.contains("LA 다저스") ? "" : "btn-group-vertical" %>">
+            		<% for (String data : teamList) { %>
+            			<button class="btn btn-outline-dark"><%= data %></button>	
+            		<% } %>
+            	</div>
+            <% } %>
+            <h5 class="fw-bold text-center <%= isTeamList ? "mt-5" : "" %>">관련 선수 선택</h5>
             <div class="player-list w-100 mt-2 btn-group-vertical">
                 <button class="btn btn-outline-dark">이정후</button>
                 <button class="btn btn-outline-dark">김혜성</button>
