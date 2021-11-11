@@ -1,15 +1,15 @@
 /* team data insert */
 
-insert into teams values (1, '두산');
-insert into teams values (1, '삼성');
-insert into teams values (1, 'KIA');
-insert into teams values (1, '롯데');
-insert into teams values (1, '한화');
-insert into teams values (1, 'KT');
-insert into teams values (1, 'LG');
-insert into teams values (1, 'SSG');
-insert into teams values (1, 'NC');
-insert into teams values (1, '키움');
+insert into teams values (1, 'KIA 타이거즈');
+insert into teams values (1, 'kt wiz');
+insert into teams values (1, 'LG 트윈스');
+insert into teams values (1, 'NC 다이노스');
+insert into teams values (1, 'SSG 랜더스');
+insert into teams values (1, '두산 베어스');
+insert into teams values (1, '롯데 자이언츠');
+insert into teams values (1, '삼성 라이온즈');
+insert into teams values (1, '키움 히어로즈');
+insert into teams values (1, '한화 이글스');
 
 insert into teams values (2, 'LA 다저스');
 insert into teams values (2, '샌디에이고 파드리스');
