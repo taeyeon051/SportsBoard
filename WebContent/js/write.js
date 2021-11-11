@@ -6,6 +6,15 @@ window.onload = () => {
 
 class App {
     constructor() {
-        log(1);
+        this.teamList = [];
+        this.teamDomList = [];
+        this.playerList = [];
+        this.playerDomList = [];
+
+        this.init();
+    }
+
+    init() {
+
     }
 }
