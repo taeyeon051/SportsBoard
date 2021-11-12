@@ -73,14 +73,20 @@
             	<h5 class="fw-bold text-center">관련 팀 선택</h5>
             	<div class="team-list w-100 mt-2 <%= teamList.contains("LA 다저스") ? "" : "btn-group-vertical" %>">
             		<% for (String data : teamList) { %>
-            			<button class="btn btn-outline-dark"><%= data %></button>	
+            			<span class="btn btn-outline-dark"><%= data %></span>	
             		<% } %>
             	</div>
             <% } %>
-            <h5 class="fw-bold text-center <%= isTeamList ? "mt-5" : "" %>">관련 선수 선택</h5>
-            <div class="player-list w-100 mt-2 btn-group-vertical">
-                <button class="btn btn-outline-dark">이정후</button>
-                <button class="btn btn-outline-dark">김혜성</button>
+            <h5 class="fw-bold text-center <%= isTeamList ? "mt-5" : "" %>">관련 선수</h5>
+            <ul class="player-list w-100 mt-2 list-group text-center">
+                <li class="list-group-item">이정후</li>
+                <li class="list-group-item">김혜성</li>
+                <li class="list-group-item">박병호</li>
+                <li class="list-group-item">김휘집</li>
+                <li class="list-group-item">신준우</li>
+                <li class="list-group-item">이용규</li>
+                <li class="list-group-item">김태훈</li>
+                <li class="list-group-item">요키시</li>
             </div>
         </div>
     </div>

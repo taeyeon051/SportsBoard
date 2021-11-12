@@ -73,4 +73,11 @@
 
 .team-list .btn {
     height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-list {
+    cursor: default;
 }
