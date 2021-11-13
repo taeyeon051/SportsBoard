@@ -19,9 +19,15 @@ public class RegisterController implements Controller {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("password");
+		String pwdc = request.getParameter("passwordc");
 		
 		if (id.trim().equals("") || name.trim().equals("") || pwd.trim().equals("")) {
 			request.setAttribute("alert", "빈 값이 있습니다.");
+			return new MyView("/view/register.jsp");
+		}
+		
+		if (!pwd.trim().equals(pwdc.trim())) {
+			request.setAttribute("alert", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 			return new MyView("/view/register.jsp");
 		}
 		
