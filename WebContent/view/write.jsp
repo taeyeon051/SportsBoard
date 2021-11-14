@@ -28,13 +28,15 @@
     <div class="write-header mt-5 mb-3 d-flex justify-content-between">
         <h3>글쓰기</h3>
         <div class="btns">
-            <button class="btn btn-dark">목록</button>
+            <a href="<%= path %>/list?item=<%= request.getParameter("item") %>" class="btn btn-dark">목록</a>
             <button class="btn btn-dark">작성</button>
         </div>
     </div>
     <div class="w-100 d-flex justify-content-between">
         <div class="write-area">
             <input type="text" id="title" name="title" class="form-control" placeholder="제목">
+			<input type="color" id="color_input" hidden="hidden">
+            <input type="file" id="form_file" multiple hidden="hidden">
             <div class="form-button-box d-flex align-items-center mt-4">
                 <button class="bld btn" data-property="bold">B</button>
                 <button class="it btn" data-property="Italic">T</button>
@@ -62,11 +64,11 @@
             <div class="ex-box">
                 <div class="inner">
                     <div class="close-exbox">×</div>
-                    <p class="mb-0">이미지는 꼭 넣어야 하며 한장만 가능합니다.</p>
-                    <p class="mb-0">선수이름 앞에 #을 붙이면 관련 선수 선택에 표시됩니다.</p>
+                    <p class="mb-0">이미지는 꼭 넣어야 합니다.</p>
+                    <p class="mb-0">선수이름 앞에 #을 붙이면 관련 선수에 표시됩니다.</p>
                 </div>
             </div>
-            <div contenteditable="true" id="content" class="form-control" spellcheck="false"></div>
+            <div contenteditable="true" id="content" class="form-control mt-1" spellcheck="false"></div>
         </div>
         <div class="select-area">
         	<% if (isTeamList) { %>
@@ -87,7 +89,7 @@
                 <li class="list-group-item">이용규</li>
                 <li class="list-group-item">김태훈</li>
                 <li class="list-group-item">요키시</li>
-            </div>
+            </ul>
         </div>
     </div>
 </section>

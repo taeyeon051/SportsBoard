@@ -30,11 +30,14 @@
 <body>
 <script>
 	console.log('<%= request.getRequestURI() %>');
+	console.log('<%= request.getServletPath() %>');
+	console.log('<%= request.getServletPath().contains("write") %>');
 	console.log(document.location.href);
 </script>
+
 <%
 	if (alert != null) {
-%>		
+%>	
 		<script>
 			alert('<%= alert %>');
 		</script>

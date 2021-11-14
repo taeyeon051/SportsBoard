@@ -24,6 +24,7 @@ class App {
     addEvent() {
         const { teamDomList } = this;
 
+        // 팀 선택 이벤트
         $(teamDomList).on("click", e => {
             const team = e.target;
             if ($(team).hasClass("active")) {
@@ -35,6 +36,30 @@ class App {
             }
 
             log(this.teamList);
+        });
+
+        // 글 템플릿
+        $(".form-button-box>.btn").on("click", e => {
+            document.execCommand(e.currentTarget.dataset.property);
+            $("#content").focus();
+        });
+ 
+        $(".clr").on("click", e => {
+            $("#color_input").click();
+        });
+
+        $("#color_input").on("change", e => {
+            document.execCommand("foreColor", false, e.target.value);
+            $("#content").focus();
+        });
+
+        // 글 작성 설명 팝업
+        $("#ex-btn").on("click", e => {
+            $(".ex-box").css({ 'display': 'flex' });
+        });
+
+        $(".close-exbox").on("click", e => {
+            $(".ex-box").css({'display': 'none'});
         });
     }
 }
