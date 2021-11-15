@@ -29,7 +29,7 @@
         <h3>글쓰기</h3>
         <div class="btns">
             <a href="<%= path %>/list?item=<%= request.getParameter("item") %>" class="btn btn-dark">목록</a>
-            <button class="btn btn-dark">작성</button>
+            <button id="write-btn" class="btn btn-dark">작성</button>
         </div>
     </div>
     <div class="w-100 d-flex justify-content-between">
