@@ -117,6 +117,10 @@ header>.input-group {
     border-bottom: 3px solid #fff;
 }
 
+#ex-btn {
+	cursor: pointer;
+}
+
 /* 푸터 영역 */
 
 footer {
