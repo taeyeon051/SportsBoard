@@ -59,13 +59,14 @@
                         <i class="fas fa-file-image"></i>
                     </button>
                 </div>
-                <i id="ex-btn" class="ms-2 fs-6 far fa-exclamation-circle"></i>
+                <i id="ex-btn" class="ms-2 fs-6 far fa-question-circle"></i>
             </div>
             <div class="ex-box">
                 <div class="inner">
                     <div class="close-exbox">×</div>
                     <p class="mb-0">이미지는 꼭 넣어야 합니다.</p>
-                    <p class="mb-0">선수이름 앞에 #을 붙이면 관련 선수에 표시됩니다.</p>
+                    <p class="mb-0">선수이름 앞,뒤에 /를 붙이면 넣으면 관련 선수에 표시됩니다.</p>
+                    <p class="mb-0">ex) /이정후/</p>
                 </div>
             </div>
             <div contenteditable="true" id="content" class="form-control mt-1" spellcheck="false"></div>

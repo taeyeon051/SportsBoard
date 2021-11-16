@@ -19,9 +19,9 @@
 
 .ex-box {
     width: 400px;
-    height: 60px;
+    height: 75px;
     position: absolute;
-    top: 40px;
+    top: 55px;
     left: 380px;
     z-index: 100;
     background-color: #fff;
@@ -37,7 +37,7 @@
     width: 100%;
     padding: 8px 15px;
     position: relative;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .close-exbox {

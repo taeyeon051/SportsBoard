@@ -55,6 +55,7 @@ class App {
 
         // 글 작성 설명 팝업
         $("#ex-btn").on("click", e => {
+        	log(e);
             $(".ex-box").css({ 'display': 'flex' });
         });
 
@@ -64,9 +65,10 @@ class App {
 
         // 글 작성
         window.addEventListener("keydown", e => {
-        	if (document.activeElement.id == "content") {        		
-        		log($("#content").html());
-        		this.playerCheck();
+        	if (document.activeElement.id == "content") {
+        		setTimeout(() => {
+        			if ($("#content").html().includes("/")) this.playerCheck();
+        		}, 0);
         	}
         });
 
@@ -88,16 +90,30 @@ class App {
         });
     }
 
+    // 내용에 선수 이름이 있는지 체크
     playerCheck() {
+    	this.playerList = [];
     	const content = $("#content").html();
-    	const conReg = /(#[가-힣]{2,})/g;
-    	if (content.match(conReg) != null) {
-    		this.playerList = content.match(conReg);
-    		log(this.playerList);
-    	}
+    	const conReg = /([/][가-힣.\s]{2,}[/])/g; 
+    	let players = [];
+    	if (content.match(conReg) != null) players = content.match(conReg);
     	
-    	this.playerList.forEach(p => {
-    		
+    	players.forEach(pl => this.playerList.push(pl.replace(/\//g, "")));
+    	this.playerList = Array.from(new Set(this.playerList));
+    	
+    	this.playerListRender();
+    }
+    
+    playerListRender() {
+    	const { playerList } = this;
+    	const plDom = document.querySelector(".player-list");
+    	plDom.innerHTML = "";
+    	
+    	playerList.forEach(pl => {
+    		const li = document.createElement("li");
+    		li.classList.add("list-group-item");
+    		li.innerHTML = pl;
+    		plDom.appendChild(li);
     	});
     }
 }
