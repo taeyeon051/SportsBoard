@@ -34,8 +34,6 @@ class App {
                 team.classList.add("active");
                 this.teamList.push(team.innerText);
             }
-
-            log(this.teamList);
         });
 
         // 글 템플릿
@@ -88,6 +86,12 @@ class App {
                 }
             });
         });
+        
+        // 이미지 삽입
+        $("#form-image-add").on("click", e => {
+        	const input = document.querySelector("#form_file");
+        	input.click();
+        });
     }
 
     // 내용에 선수 이름이 있는지 체크
@@ -115,5 +119,28 @@ class App {
     		li.innerHTML = pl;
     		plDom.appendChild(li);
     	});
+    }
+    
+    makeInput() {
+    	const input = document.createElement("input");
+    	input.setAttribute("type", "file");
+    	input.setAttribute("multiple", "");
+        input.setAttribute("accept", "image/*");
+        input.addEventListener("change", (e) => {
+            let fileList = Array.from(e.target.files);
+            fileList.forEach(f => {
+                let type = f.type.split("/")[0];
+                if (type == "image") { // 타입이 이미지임
+                    let reader = new FileReader();
+                    reader.addEventListener("load", (e) => { // base64 완료
+                        let div = this.getImgPreviewTemp(f.name, reader.result);
+                        document.querySelector("#content").append(div);
+                        this.fileList.push(f);
+                    }, false);
+                    reader.readAsDataURL(f);
+                }
+            });
+        });
+        input.click();
     }
 }

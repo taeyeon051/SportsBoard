@@ -36,7 +36,7 @@
         <div class="write-area">
             <input type="text" id="title" name="title" class="form-control" placeholder="제목">
 			<input type="color" id="color_input" hidden="hidden">
-            <input type="file" id="form_file" multiple hidden="hidden">
+            <input type="file" id="form_file" accept="image/*" hidden="hidden">
             <div class="form-button-box d-flex align-items-center mt-4">
                 <button class="bld btn" data-property="bold">B</button>
                 <button class="it btn" data-property="Italic">T</button>
@@ -81,16 +81,7 @@
             	</div>
             <% } %>
             <h5 class="fw-bold text-center <%= isTeamList ? "mt-5" : "" %>">관련 선수</h5>
-            <ul class="player-list w-100 mt-2 list-group text-center">
-                <li class="list-group-item">이정후</li>
-                <li class="list-group-item">김혜성</li>
-                <li class="list-group-item">박병호</li>
-                <li class="list-group-item">김휘집</li>
-                <li class="list-group-item">신준우</li>
-                <li class="list-group-item">이용규</li>
-                <li class="list-group-item">김태훈</li>
-                <li class="list-group-item">요키시</li>
-            </ul>
+            <ul class="player-list w-100 mt-2 list-group text-center"></ul>
         </div>
     </div>
 </section>
