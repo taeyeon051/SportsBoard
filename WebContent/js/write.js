@@ -43,10 +43,10 @@ class App {
         });
 
         $(".clr").on("click", e => {
-            $("#color_input").click();
+            $("#color-input").click();
         });
 
-        $("#color_input").on("change", e => {
+        $("#color-input").on("change", e => {
             document.execCommand("foreColor", false, e.target.value);
             $("#content").focus();
         });
@@ -88,8 +88,20 @@ class App {
         });
         
         // 이미지 삽입
+        $("#form-file").on("change", e => {
+            const file = e.target.files[0];
+            if (file.type.split("/")[0] != "image") {
+                alert("이미지 파일을 선택해 주세요.");
+                e.target.value = "";
+            }
+
+            const reader = new FileReader();
+            reader.onload = () => { this.makeImgDom(file.name, reader.result); };
+            reader.readAsDataURL(file);
+        });
+
         $("#form-image-add").on("click", e => {
-        	const input = document.querySelector("#form_file");
+        	const input = document.querySelector("#form-file");
         	input.click();
         });
     }
@@ -121,26 +133,14 @@ class App {
     	});
     }
     
-    makeInput() {
-    	const input = document.createElement("input");
-    	input.setAttribute("type", "file");
-    	input.setAttribute("multiple", "");
-        input.setAttribute("accept", "image/*");
-        input.addEventListener("change", (e) => {
-            let fileList = Array.from(e.target.files);
-            fileList.forEach(f => {
-                let type = f.type.split("/")[0];
-                if (type == "image") { // 타입이 이미지임
-                    let reader = new FileReader();
-                    reader.addEventListener("load", (e) => { // base64 완료
-                        let div = this.getImgPreviewTemp(f.name, reader.result);
-                        document.querySelector("#content").append(div);
-                        this.fileList.push(f);
-                    }, false);
-                    reader.readAsDataURL(f);
-                }
-            });
-        });
-        input.click();
+    makeImgDom(filename, src) {
+        const content = document.querySelector("#content");
+
+        const img = document.createElement("img");
+        img.classList.add("content-img");
+        img.src = src;
+        img.alt = filename;
+
+        content.appendChild(img);
     }
 }

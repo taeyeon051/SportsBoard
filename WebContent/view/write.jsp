@@ -35,8 +35,8 @@
     <div class="w-100 d-flex justify-content-between">
         <div class="write-area">
             <input type="text" id="title" name="title" class="form-control" placeholder="제목">
-			<input type="color" id="color_input" hidden="hidden">
-            <input type="file" id="form_file" accept="image/*" hidden="hidden">
+			<input type="color" id="color-input" hidden="hidden">
+            <input type="file" id="form-file" accept="image/*" hidden="hidden">
             <div class="form-button-box d-flex align-items-center mt-4">
                 <button class="bld btn" data-property="bold">B</button>
                 <button class="it btn" data-property="Italic">T</button>

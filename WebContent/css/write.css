@@ -12,11 +12,13 @@
     font-size: 14px;
 }
 
+/* 글 작성 영역 */
 .write-area {
     width: 800px;
     position: relative;
 }
 
+/* 글 작성 관련 설명 영역 */
 .ex-box {
     width: 400px;
     height: 75px;
@@ -51,11 +53,13 @@
     cursor: pointer;
 }
 
+/* 글 작성 영역 */
 #content {
     height: auto;
     min-height: 700px;
 }
 
+/* 영상 업로드 썸네일 영역 */
 .thumbnail-image {
     width: 480px;
     height: 280px;
@@ -69,6 +73,7 @@
     filter: brightness(80%);
 }
 
+/* 관련 팀, 선수 선택 영역 */
 .select-area {
     width: 280px;
 }
@@ -82,4 +87,12 @@
 
 .player-list {
     cursor: default;
+}
+
+/* 글 작성 이미지 영역 */
+
+.content-img {
+    width: 100%;
+    cursor: pointer;
+    margin: 10px 0;
 }
