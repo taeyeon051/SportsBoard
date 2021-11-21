@@ -6,9 +6,9 @@
 </head>
 
 <script>
-	<% if (request.getRequestURI().equals("/SportsBoard/")) { %> 
-		location.href = "/SportsBoard/main?item=home";
-	<% } %>
+	if (document.location.href.split('?')[0].split('/').splice(4, 1)[0] != "main") {	
+		location.href = "/SportsBoard/main?type=home";
+	}
 </script>
 
 <!-- 메인 영역 -->
