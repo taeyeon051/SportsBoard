@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.WriteDAO;
-import vo.WriteVO;
+import vo.BoardVO;
 
 public class WritePageController implements Controller {
 	@Override
@@ -28,17 +28,13 @@ public class WritePageController implements Controller {
 		String url;
 		int code = dao.getLastCode();
 		
-		WriteVO vo = new WriteVO();
+		BoardVO vo = new BoardVO();
 		vo.setwCode(code);
 		vo.setwType(type);
 		vo.setTitle(request.getParameter("title"));
 		vo.setContent(request.getParameter("content"));
 		vo.setTeamList(request.getParameter("teamList"));
 		vo.setPlayerList(request.getParameter("playerList"));
-		
-		System.out.println(request.getParameter("content"));
-		System.out.println(request.getParameter("teamList"));
-		System.out.println(request.getParameter("playerList"));
 		
 		int n = dao.insertWrite(vo);
 		if (n > 0) url = "/index.jsp";

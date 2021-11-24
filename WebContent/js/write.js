@@ -173,7 +173,8 @@ class App {
         const div = document.createElement("div");
         div.innerHTML = $("#content").html();
         div.querySelectorAll("img").forEach(img => { img.src = img.alt; });
-        const content = div.innerHTML;
+        let content = div.innerHTML;
+        playerList.forEach(p => { content = content.replace(`/${p}/`, p); });
 
         const formData = {};
         formData.title = $("#title").val().trim();

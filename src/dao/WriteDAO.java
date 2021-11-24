@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import common.JdbcUtil;
 import oracle.jdbc.OracleResultSet;
 import oracle.sql.CLOB;
-import vo.WriteVO;
+import vo.BoardVO;
 
 public class WriteDAO {
 	public ArrayList<String> getTeamList(String item) {
@@ -59,6 +58,7 @@ public class WriteDAO {
 
 			if (rs.next()) {
 				code = rs.getInt("code");
+				if (code < 1) code = 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,13 +69,13 @@ public class WriteDAO {
 		return code;
 	}
 
-	public int insertWrite(WriteVO vo) {
+	public int insertWrite(BoardVO vo) {
 		int n = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into writings values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into writings values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -85,7 +85,6 @@ public class WriteDAO {
 			pstmt.setString(2, vo.getwType());
 			pstmt.setString(3, vo.getTitle());
 			pstmt.setClob(4, oracle.sql.CLOB.empty_lob());
-//			strToClob(vo.getContent()));
 			pstmt.setString(5, vo.getTeamList());
 			pstmt.setString(6, vo.getPlayerList());
 			
@@ -110,15 +109,5 @@ public class WriteDAO {
 		}
 		
 		return n;
-	}
-	
-	public Clob strToClob(String str) {
-		try {			
-			Clob c = new javax.sql.rowset.serial.SerialClob(str.toCharArray());
-			return c;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 }
