@@ -85,7 +85,7 @@
 
         <!-- 서브 메뉴 영역 -->
         <div id="submenu" class="d-flex">
-            <a href="<%= path %>/list">글목록</a>
+            <a href="<%= path %>/boardList?type=<%= type %>&p=1" class="<%= request.getRequestURI().equals("/SportsBoard/view/boardList.jsp") ? "selected" : "" %>">글목록</a>
             <a href="<%= path %>/videoList">영상목록</a>
             <% if (user != null && !type.equals("home")) { %>
             	<a href="<%= path %>/write?type=<%= type %>" class="<%= request.getRequestURI().equals("/SportsBoard/view/write.jsp") ? "selected" : "" %>">글쓰기</a>
