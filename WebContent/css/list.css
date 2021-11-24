@@ -5,6 +5,10 @@
     min-height: 500px;
 }
 
+#board-list {
+	width: 100%;
+}
+
 .news-box {
     width: 100%;
     max-height: 160px;
