@@ -29,6 +29,11 @@
     margin-top: 70px;
 }
 
+.view-content img {
+    max-width: 950px;
+    object-fit: cover;
+}
+
 
 /* 영상 */
 
