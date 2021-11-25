@@ -16,4 +16,3 @@ select w_code, w_type, title, DBMS_LOB.SUBSTR(content, DBMS_LOB.GETLENGTH(conten
 
 -- 글 번호 가져오기 --
 select max(w_code) + 1 as code from writings;
--- 글 작성 --
