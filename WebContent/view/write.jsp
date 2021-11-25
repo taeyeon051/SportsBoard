@@ -28,7 +28,7 @@
     <div class="write-header mt-5 mb-3 d-flex justify-content-between">
         <h3>글쓰기</h3>
         <div class="btns">
-            <a href="<%= path %>/list?type=<%= request.getParameter("type") %>" class="btn btn-dark">목록</a>
+            <a href="<%= path %>/board/list?type=<%= request.getParameter("type") %>" class="btn btn-dark">목록</a>
             <button id="write-btn" class="btn btn-dark">작성</button>
         </div>
     </div>

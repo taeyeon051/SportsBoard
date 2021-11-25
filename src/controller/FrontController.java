@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/user/*", "/main", "/write", "/boardList"})
+@WebServlet(urlPatterns = {"/user/*", "/main", "/board/*"})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Controller> controllerMap = new HashMap<>();
@@ -27,9 +27,11 @@ public class FrontController extends HttpServlet {
 		// 메인페이지
 		controllerMap.put("/main", new MainPageController());
 		// 글 작성
-		controllerMap.put("/write", new WritePageController());
+		controllerMap.put("/board/write", new WritePageController());
 		// 글 목록
-		controllerMap.put("/boardList", new BoardListPageController());
+		controllerMap.put("/board/list", new BoardListPageController());
+		// 글 보기
+		controllerMap.put("/board/view", new BoardViewPageController());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
