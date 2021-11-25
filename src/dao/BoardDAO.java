@@ -49,4 +49,33 @@ public class BoardDAO {
 		return boardList;
 	}
 
+	public BoardVO getBoard(int code) {
+		BoardVO vo = new BoardVO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from writings where w_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setwType(rs.getString("w_type"));
+				vo.setwDate(rs.getString("w_date"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+
 }
