@@ -1,9 +1,8 @@
 const log = console.log;
 
 class Board {
-    constructor(list, url) {
+    constructor(list) {
         this.boardList = list;
-        this.url = url;
 
         this.init();
     }
@@ -11,13 +10,13 @@ class Board {
     init() {
         const { boardList } = this;
         boardList.forEach(board => {
-            log(board);
             this.renderList(board);
         });
     }
 
     renderList(board) {
-        const { url } = this;
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
         const listDom = document.querySelector("#board-list");
 
         const content = board.content;
@@ -29,8 +28,8 @@ class Board {
         div.innerHTML =
             `<img src="/SportsBoard/upload/${img}" alt="${img}">
             <div class="news-text">
-                <h5 class="news-title"><a href="./view.html">${board.title}</a></h5>
-                <a href="./view.html" class="news-content">${contentText}</a>
+                <h5 class="news-title"><a href="/SportsBoard/board/view?type=${type}&id=${board.wCode}">${board.title}</a></h5>
+                <a href="/SportsBoard/board/view?type=${type}&id=${board.wCode}" class="news-content">${contentText.trim()}</a>
                 <div class="news-date">${board.wDate}</div>
             </div>`;
 
@@ -45,11 +44,9 @@ class Board {
     }
 
     getContentText(content) {
-        content.replace(/([/][가-힣.\s]{2,}[/])/g, /([가-힣.\s]{2,})/g);
-
         const div = document.createElement("div");
         div.innerHTML = content;
         div.querySelectorAll("img").forEach(img => { img.remove(); });
-        return div.innerHTML;
+        return div.innerText;
     }
 }

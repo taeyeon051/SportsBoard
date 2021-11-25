@@ -66,6 +66,9 @@ class App {
             if (document.activeElement.id == "content") {
                 setTimeout(() => {
                     if ($("#content").html().includes("/")) this.playerCheck();
+                    if ($("#content img")) {
+                        
+                    }
                 }, 0);
             }
         });
@@ -77,7 +80,7 @@ class App {
             data.type = urlParams.get('type');
 
             $.ajax({
-                url: '/SportsBoard/write',
+                url: '/SportsBoard/board/write',
                 type: "POST",
                 data: data,
                 success: e => {
@@ -100,31 +103,37 @@ class App {
 
             if (file.length < 1) return;
 
-            const formData = new FormData($("#img-form")[0]);
-            $.ajax({
-                url: '/SportsBoard/view/fileupload.jsp',
-                type: 'POST',
-                enctype: 'multipart/form-data',
-                data: formData,
-                dataType: 'html',
-                contentType: false,
-                processData: false,
-                success: e => {
-                    if (e.trim() == "오류") return alert("파일 업로드 중 오류 발생.");
-                    const reader = new FileReader();
-                    reader.onload = () => { this.makeImgDom(e.trim(), reader.result); };
-                    reader.readAsDataURL(file);
-                },
-                error: (req, err) => {
-                    log(req.status, err);
-                    alert('파일 업로드 중 오류가 발생하였습니다.');
-                }
-            });
+            this.uploadFile();
         });
+
+        $("#form-")
 
         $("#form-image-add").on("click", e => {
             const input = document.querySelector("#form-file");
             input.click();
+        });
+    }
+
+    uploadFile() {
+        const formData = new FormData($("#img-form")[0]);
+        $.ajax({
+            url: '/SportsBoard/view/fileupload.jsp',
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: formData,
+            dataType: 'html',
+            contentType: false,
+            processData: false,
+            success: e => {
+                if (e.trim() == "오류") return alert("파일 업로드 중 오류 발생.");
+                const reader = new FileReader();
+                reader.onload = () => { this.makeImgDom(e.trim(), reader.result); };
+                reader.readAsDataURL(file);
+            },
+            error: (req, err) => {
+                log(req.status, err);
+                alert('파일 업로드 중 오류가 발생하였습니다.');
+            }
         });
     }
 
@@ -161,7 +170,7 @@ class App {
 
         const img = document.createElement("img");
         img.classList.add("content-img");
-        img.src = src;
+        img.src = `/SportsBoard/upload/${filename}`;
         img.alt = filename;
 
         content.appendChild(img);
@@ -172,7 +181,6 @@ class App {
 
         const div = document.createElement("div");
         div.innerHTML = $("#content").html();
-        div.querySelectorAll("img").forEach(img => { img.src = img.alt; });
         let content = div.innerHTML;
         playerList.forEach(p => { content = content.replace(`/${p}/`, p); });
 
