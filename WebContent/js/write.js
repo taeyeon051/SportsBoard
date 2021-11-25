@@ -67,7 +67,7 @@ class App {
                 setTimeout(() => {
                     if ($("#content").html().includes("/")) this.playerCheck();
                     if ($("#content img")) {
-                        
+                    
                     }
                 }, 0);
             }
@@ -103,10 +103,8 @@ class App {
 
             if (file.length < 1) return;
 
-            this.uploadFile();
+            this.uploadFile(file);
         });
-
-        $("#form-")
 
         $("#form-image-add").on("click", e => {
             const input = document.querySelector("#form-file");
@@ -114,7 +112,7 @@ class App {
         });
     }
 
-    uploadFile() {
+    uploadFile(file) {
         const formData = new FormData($("#img-form")[0]);
         $.ajax({
             url: '/SportsBoard/view/fileupload.jsp',
