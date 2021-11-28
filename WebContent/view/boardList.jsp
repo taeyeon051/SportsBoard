@@ -10,6 +10,11 @@
 <%
 	ArrayList<BoardVO> boardList = (ArrayList) request.getAttribute("boardList");
 	String json = new Gson().toJson(boardList);
+    int cnt = (int) request.getAttribute("cnt");
+    int nowPage = Integer.parseInt(request.getParameter("p"));
+    int start, end;
+    start = nowPage / 10 + 1;
+    end = start + 9;
 %>
 
 <!-- 글 목록 페이지 -->
@@ -17,13 +22,27 @@
 	<div id="board-list"></div>
 
     <ul class="pagination mt-5 mx-auto">
-        <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-        <li class="page-item active"><a href="#" class="page-link">1</a></li>
-        <li class="page-item"><a href="#" class="page-link">2</a></li>
-        <li class="page-item"><a href="#" class="page-link">3</a></li>
-        <li class="page-item"><a href="#" class="page-link">4</a></li>
-        <li class="page-item"><a href="#" class="page-link">5</a></li>
-        <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+        <% if (start > 1) { %>
+        	<li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+		<% } %>
+        
+        <% if (cnt < 10) { %>
+            <% for (int i = start; i <= cnt; i++) { %>
+            	<li class="page-item <%= nowPage == i ? "active" : "" %>">
+            		<a href="/SportsBoard/board/list?type=<%= request.getParameter("type") %>&p=<%= i %>" class="page-link"><%= i %></a>
+            	</li>
+        	<% } %>
+        <% } else { %>
+        	<% for (int i = start; i <= end; i++) { %>
+            	<li class="page-item <%= nowPage == i ? "active" : "" %>">
+            		<a href="/SportsBoard/board/list?type=<%= request.getParameter("type") %>&p=<%= i %>" class="page-link"><%= i %></a>
+            	</li>
+        	<% } %>
+        <% } %>
+        
+        <% if (end < cnt) { %>
+        	<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+        <% } %>
     </ul>
 </section>
 
