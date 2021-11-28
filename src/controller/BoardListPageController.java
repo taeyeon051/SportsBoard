@@ -15,12 +15,15 @@ public class BoardListPageController implements Controller {
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String type = request.getParameter("type");
-		int end = Integer.parseInt(request.getParameter("p")) * 10;
 		
 		BoardDAO dao = new BoardDAO();
+		int cnt = (int) Math.ceil(dao.getBoardCnt(type) / 10);
+		
+		int end = Integer.parseInt(request.getParameter("p")) * 10;
 		ArrayList<BoardVO> boardList = dao.getBoardList(type, end);
 
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("cnt", cnt);
 		
 		return new MyView("/view/boardList.jsp");
 	}

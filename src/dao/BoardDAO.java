@@ -10,15 +10,40 @@ import common.JdbcUtil;
 import vo.BoardVO;
 
 public class BoardDAO {
+	public double getBoardCnt(String type) {
+		double cnt = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as cnt from writings where w_type = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) cnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return cnt;
+	}
+	
 	public ArrayList<BoardVO> getBoardList(String type, int end) {
 		ArrayList<BoardVO> boardList = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select b.*, rownum as num "
-				+ "from (select * from writings order by w_date) b "
-				+ "where w_type = ? and rownum >= ? and rownum <= ?";
+		String sql = "select * "
+				+ "from (select rownum as num, w.* from writings w "
+				+ "where w_type = ? order by w_code desc) "
+				+ "where num between ? and ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {
