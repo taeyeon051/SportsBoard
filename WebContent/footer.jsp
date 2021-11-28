@@ -20,6 +20,12 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+		if (document.location.href.split('?')[0].split('/').splice(4, 1)[0] == "user") {	
+			document.querySelector('#submenu').innerHTML = "";
+		}
+	</script>
 </body>
 
 </html>
