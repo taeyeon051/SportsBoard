@@ -66,9 +66,6 @@ class App {
             if (document.activeElement.id == "content") {
                 setTimeout(() => {
                     if ($("#content").html().includes("/")) this.playerCheck();
-                    if ($("#content img")) {
-                    
-                    }
                 }, 0);
             }
         });
