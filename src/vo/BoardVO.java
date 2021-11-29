@@ -1,12 +1,12 @@
 package vo;
 
-import java.sql.Date;
-
 public class BoardVO {
 	private int wCode;
 	private String wType;
 	private String wDate;
 	private String title;
+	private String writerId;
+	private String writerName;
 	private String content;
 	private String teamList;
 	private String playerList;
@@ -41,6 +41,22 @@ public class BoardVO {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getWriterId() {
+		return writerId;
+	}
+
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
+
+	public String getWriterName() {
+		return writerName;
+	}
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 
 	public String getContent() {

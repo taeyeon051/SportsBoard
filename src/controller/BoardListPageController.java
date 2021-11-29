@@ -17,9 +17,9 @@ public class BoardListPageController implements Controller {
 		String type = request.getParameter("type");
 		
 		BoardDAO dao = new BoardDAO();
-		int cnt = (int) Math.ceil(dao.getBoardCnt(type) / 10);
+		int cnt = (int) Math.ceil(dao.getBoardCnt(type) / 2);
 		
-		int end = Integer.parseInt(request.getParameter("p")) * 10;
+		int end = Integer.parseInt(request.getParameter("p")) * 2;
 		ArrayList<BoardVO> boardList = dao.getBoardList(type, end);
 
 		request.setAttribute("boardList", boardList);

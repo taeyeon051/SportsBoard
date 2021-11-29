@@ -41,7 +41,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * "
-				+ "from (select rownum as num, w.* from writings w "
+				+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w "
 				+ "where w_type = ? order by w_code desc) "
 				+ "where num between ? and ?";
 		
@@ -49,7 +49,7 @@ public class BoardDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, type);
-			pstmt.setInt(2, end - 9);
+			pstmt.setInt(2, end - 1);
 			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			
@@ -59,6 +59,7 @@ public class BoardDAO {
 				vo.setwType(rs.getString("w_type"));
 				vo.setwDate(rs.getString("w_date"));
 				vo.setTitle(rs.getString("title"));
+				vo.setWriterName(rs.getString("writer_name"));
 				vo.setContent(rs.getString("content"));
 				vo.setTeamList(rs.getString("teamList"));
 				vo.setPlayerList(rs.getString("playerList"));
@@ -92,6 +93,8 @@ public class BoardDAO {
 				vo.setwType(rs.getString("w_type"));
 				vo.setwDate(rs.getString("w_date"));
 				vo.setTitle(rs.getString("title"));
+				vo.setWriterId(rs.getString("writer_id"));
+				vo.setWriterName(rs.getString("writer_name"));
 				vo.setContent(rs.getString("content"));
 			}
 		} catch (SQLException e) {
