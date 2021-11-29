@@ -12,7 +12,11 @@
 <section id="view">
     <div class="view-header">
         <h3 class="view-title"><%= vo.getTitle() %></h3>
-        <div class="view-date"><%= vo.getwDate() %></div>
+        <div class="view-date">
+        	<%= vo.getWriterName() %>
+        	&nbsp;&nbsp;
+        	입력 <%= vo.getwDate() %>
+        </div>
     </div>
     <div class="view-body">
         <div class="view-content">

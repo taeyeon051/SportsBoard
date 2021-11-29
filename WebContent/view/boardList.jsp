@@ -10,6 +10,8 @@
 <%
 	ArrayList<BoardVO> boardList = (ArrayList) request.getAttribute("boardList");
 	String json = new Gson().toJson(boardList);
+	
+	String reqType = request.getParameter("type");
     int cnt = (int) request.getAttribute("cnt");
     int nowPage = Integer.parseInt(request.getParameter("p"));
     int start, end;
@@ -23,25 +25,25 @@
 
     <ul class="pagination mt-5 mx-auto">
         <% if (start > 1) { %>
-        	<li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+        	<li class="page-item"><a href="<%= path %>/board/list?type=<%= reqType %>&p=<%= start - 1 %>" class="page-link">&laquo;</a></li>
 		<% } %>
         
         <% if (cnt < 10) { %>
             <% for (int i = start; i <= cnt; i++) { %>
             	<li class="page-item <%= nowPage == i ? "active" : "" %>">
-            		<a href="/SportsBoard/board/list?type=<%= request.getParameter("type") %>&p=<%= i %>" class="page-link"><%= i %></a>
+            		<a href="<%= path %>/board/list?type=<%= reqType %>&p=<%= i %>" class="page-link"><%= i %></a>
             	</li>
         	<% } %>
         <% } else { %>
         	<% for (int i = start; i <= end; i++) { %>
             	<li class="page-item <%= nowPage == i ? "active" : "" %>">
-            		<a href="/SportsBoard/board/list?type=<%= request.getParameter("type") %>&p=<%= i %>" class="page-link"><%= i %></a>
+            		<a href="<%= path %>/board/list?type=<%= reqType %>&p=<%= i %>" class="page-link"><%= i %></a>
             	</li>
         	<% } %>
         <% } %>
         
         <% if (end < cnt) { %>
-        	<li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+        	<li class="page-item"><a href="<%= path %>/board/list?type=<%= reqType %>&p=<%= end + 1 %>" class="page-link">&raquo;</a></li>
         <% } %>
     </ul>
 </section>
