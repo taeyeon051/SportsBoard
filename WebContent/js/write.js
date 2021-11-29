@@ -72,6 +72,9 @@ class App {
 
         // 글 작성 버튼 이벤트
         $("#write-btn").on("click", e => {
+            if ($("#title").val().trim() === "") return alert('제목을 입력해주세요.');
+            if ($("#content").html().trim() === "") return alert('내용을 입력해주세요.');
+
             const data = this.getFormData();
             const urlParams = new URLSearchParams(window.location.search);
             data.type = urlParams.get('type');
@@ -81,7 +84,7 @@ class App {
                 type: "POST",
                 data: data,
                 success: e => {
-                    location.href = '/SportsBoard/';
+                    location.href = `/SportsBoard/board/list?type=${data.type}&p=1`;
                 },
                 error: (req, err) => {
                     console.log(req.status, err);

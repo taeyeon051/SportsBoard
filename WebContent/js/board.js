@@ -10,10 +10,9 @@ class Board {
 
     init() {
         const { boardList, urlParams } = this;
-        if (urlParams.get('p') == 1) return alert("게시된 글이 없습니다.");
 
         if (boardList.length < 1) {
-            alert('잘못된 주소입니다.');
+            alert('해당 페이지에 게시된 글이 없습니다.');
             return history.back();
         }
 
@@ -39,7 +38,7 @@ class Board {
             `<div class="news-text">
                 <h5 class="news-title"><a href="/SportsBoard/board/view?type=${type}&id=${board.wCode}">${board.title}</a></h5>
                 <a href="/SportsBoard/board/view?type=${type}&id=${board.wCode}" class="news-content">${contentText.trim()}</a>
-                <div class="news-date">${board.wDate}</div>
+                <div class="news-date">${board.wDate} · ${board.writerName}</div>
             </div>`;
 
         listDom.appendChild(div);
