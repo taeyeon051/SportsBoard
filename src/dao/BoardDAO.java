@@ -42,7 +42,7 @@ public class BoardDAO {
 		ResultSet rs = null;
 		String sql = "select * "
 				+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w "
-				+ "where w_type = ? order by w_code desc) "
+				+ "where w_type = ?) "
 				+ "where num between ? and ?";
 		
 		conn = JdbcUtil.getConnection();
