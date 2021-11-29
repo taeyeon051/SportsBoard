@@ -11,6 +11,7 @@ import common.JdbcUtil;
 import oracle.jdbc.OracleResultSet;
 import oracle.sql.CLOB;
 import vo.BoardVO;
+import vo.UserVO;
 
 public class WriteDAO {
 	public ArrayList<String> getTeamList(String item) {
@@ -69,13 +70,13 @@ public class WriteDAO {
 		return code;
 	}
 
-	public int insertWrite(BoardVO vo) {
+	public int insertWrite(BoardVO vo, UserVO user) {
 		int n = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into writings values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?)";
+		String sql = "insert into writings values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?, ?, ?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -84,9 +85,11 @@ public class WriteDAO {
 			pstmt.setInt(1, vo.getwCode());
 			pstmt.setString(2, vo.getwType());
 			pstmt.setString(3, vo.getTitle());
-			pstmt.setClob(4, oracle.sql.CLOB.empty_lob());
-			pstmt.setString(5, vo.getTeamList());
-			pstmt.setString(6, vo.getPlayerList());
+			pstmt.setString(4, user.getUserId());
+			pstmt.setString(5, user.getUserName());
+			pstmt.setClob(6, oracle.sql.CLOB.empty_lob());
+			pstmt.setString(7, vo.getTeamList());
+			pstmt.setString(8, vo.getPlayerList());
 			
 			n = pstmt.executeUpdate();
 			

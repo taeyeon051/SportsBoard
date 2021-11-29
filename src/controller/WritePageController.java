@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.WriteDAO;
 import vo.BoardVO;
+import vo.UserVO;
 
 public class WritePageController implements Controller {
 	@Override
@@ -36,7 +38,10 @@ public class WritePageController implements Controller {
 		vo.setTeamList(request.getParameter("teamList"));
 		vo.setPlayerList(request.getParameter("playerList"));
 		
-		int n = dao.insertWrite(vo);
+		HttpSession session = request.getSession();
+		UserVO user = (UserVO) session.getAttribute("user");
+		
+		int n = dao.insertWrite(vo, user);
 		if (n > 0) url = "/index.jsp";
 		else {
 			request.setAttribute("alert", "DB 오류로 인하여 글 작성에 실패하였습니다.");
