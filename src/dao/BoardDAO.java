@@ -49,7 +49,7 @@ public class BoardDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, type);
-			pstmt.setInt(2, end - 1);
+			pstmt.setInt(2, end - 9);
 			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			

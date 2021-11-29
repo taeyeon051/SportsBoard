@@ -15,8 +15,8 @@
     int cnt = (int) request.getAttribute("cnt");
     int nowPage = Integer.parseInt(request.getParameter("p"));
     int start, end;
-    start = nowPage / 10 + 1;
-    end = start + 9;
+    end = (int) Math.ceil((double) nowPage / 10.0) * 10;
+    start = end - 9;
 %>
 
 <!-- 글 목록 페이지 -->
@@ -36,9 +36,11 @@
         	<% } %>
         <% } else { %>
         	<% for (int i = start; i <= end; i++) { %>
-            	<li class="page-item <%= nowPage == i ? "active" : "" %>">
-            		<a href="<%= path %>/board/list?type=<%= reqType %>&p=<%= i %>" class="page-link"><%= i %></a>
-            	</li>
+        		<% if (i <= cnt) { %>
+    	        	<li class="page-item <%= nowPage == i ? "active" : "" %>">
+	            		<a href="<%= path %>/board/list?type=<%= reqType %>&p=<%= i %>" class="page-link"><%= i %></a>
+            		</li>
+            	<% } %>
         	<% } %>
         <% } %>
         
