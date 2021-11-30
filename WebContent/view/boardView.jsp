@@ -5,6 +5,7 @@
 <%@ include file="../header.jsp"%>
 <head>
     <link rel="stylesheet" href="<%=path%>/css/view.css">
+	<script src="<%= path %>/js/delete.js"></script>
 </head>
 <% BoardVO vo = (BoardVO) request.getAttribute("board"); %>
 
@@ -12,10 +13,18 @@
 <section id="view">
     <div class="view-header">
         <h3 class="view-title"><%= vo.getTitle() %></h3>
-        <div class="view-date">
-        	<%= vo.getWriterName() %>
-        	&nbsp;&nbsp;
-        	입력 <%= vo.getwDate() %>
+        <div class="mt-3 d-flex">
+	        <div class="view-date">
+	        	<%= vo.getWriterName() %>
+	        	&nbsp;&nbsp;
+	        	입력 <%= vo.getwDate() %>
+	        </div>
+	        <div class="view-btns">
+	        	<% if (user != null && vo.getWriterId().equals(user.getUserId())) { %>
+	        		<a href="<%= path %>/board/modify?type=<%= type %>&id=<%= vo.getwCode() %>" class="btn btn-dark">수정</a>
+	        		<button id="delete-btn" class="btn btn-dark">삭제</button>
+	        	<% } %>
+	        </div>
         </div>
     </div>
     <div class="view-body">
@@ -24,5 +33,9 @@
         </div>
     </div>
 </section>
+
+<script>
+	const view = new Delete("<%= vo.getwCode() %>", "<%= vo.getWriterId() %>");
+</script>
 
 <%@ include file="../footer.jsp"%>

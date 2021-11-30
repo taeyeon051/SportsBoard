@@ -26,8 +26,10 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/user/logout", new LogoutController());
 		// 메인페이지
 		controllerMap.put("/main", new MainPageController());
-		// 글 작성
+		// 글 작성, 수정, 삭제
 		controllerMap.put("/board/write", new WritePageController());
+		controllerMap.put("/board/modify", new ModifyPageController());
+		controllerMap.put("/board/delete", new DeletePageController());
 		// 글 목록
 		controllerMap.put("/board/list", new BoardListPageController());
 		// 글 보기
