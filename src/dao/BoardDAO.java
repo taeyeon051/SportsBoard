@@ -90,6 +90,7 @@ public class BoardDAO {
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+				vo.setwCode(rs.getInt("w_code"));
 				vo.setwType(rs.getString("w_type"));
 				vo.setwDate(rs.getString("w_date"));
 				vo.setTitle(rs.getString("title"));
@@ -106,4 +107,25 @@ public class BoardDAO {
 		return vo;
 	}
 
+	public int deleteBoard(int code) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from writings where w_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			
+			n = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt);
+		}
+		
+		return n;
+	}
 }

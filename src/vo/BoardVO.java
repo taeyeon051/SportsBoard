@@ -10,6 +10,7 @@ public class BoardVO {
 	private String content;
 	private String teamList;
 	private String playerList;
+	private int views;
 
 	public int getwCode() {
 		return wCode;
@@ -81,5 +82,13 @@ public class BoardVO {
 
 	public void setPlayerList(String playerList) {
 		this.playerList = playerList;
+	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
 	}
 }
