@@ -76,35 +76,82 @@ public class WriteDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into writings values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into writings values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?, ?, ?, ?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
-			Statement stmt = conn.createStatement();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getwCode());
 			pstmt.setString(2, vo.getwType());
 			pstmt.setString(3, vo.getTitle());
 			pstmt.setString(4, user.getUserId());
 			pstmt.setString(5, user.getUserName());
-			pstmt.setClob(6, oracle.sql.CLOB.empty_lob());
+			pstmt.setString(6, vo.getContent());
 			pstmt.setString(7, vo.getTeamList());
 			pstmt.setString(8, vo.getPlayerList());
+			pstmt.setInt(9, 0);
 			
 			n = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return n;
+	}
+
+	public BoardVO getBoard(int code) {
+		BoardVO vo = new BoardVO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from writings where w_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			rs = pstmt.executeQuery();
 			
-			String sqls = "select content from writings where w_code = " + vo.getwCode() + " for update";
-			rs = stmt.executeQuery(sqls);
 			if (rs.next()) {
-				CLOB clob = ((OracleResultSet)rs).getCLOB(1);
-				clob.putString(1, vo.getContent());
-				String sqlu = "update writings set content = ? where w_code = ?";
-				PreparedStatement upstmt = conn.prepareStatement(sqlu);
-				upstmt.setClob(1, clob);
-				upstmt.setInt(2, vo.getwCode());
-				upstmt.executeUpdate();
-				upstmt.close();
+				vo.setwCode(rs.getInt("w_code"));
+				vo.setTitle(rs.getString("title"));
+				vo.setWriterId(rs.getString("writer_id"));
+				vo.setContent(rs.getString("content"));
+				vo.setTeamList(rs.getString("teamList"));
+				vo.setPlayerList(rs.getString("playerList"));
+			} else {
+				vo = null;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+
+	public int modifyWrite(BoardVO vo) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "update writings set title = ?, content = ?, teamList = ?, playerList = ? where w_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setString(3, vo.getTeamList());
+			pstmt.setString(4, vo.getPlayerList());
+			pstmt.setInt(5, vo.getwCode());
+			
+			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

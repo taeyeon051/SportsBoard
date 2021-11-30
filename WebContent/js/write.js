@@ -1,15 +1,16 @@
 const log = console.log;
 
 window.onload = () => {
-    const app = new App();
+    const write = new Write();
 }
 
-class App {
-    constructor() {
+class Write {
+    constructor(board = null) {
         this.teamList = [];
         this.teamDomList = [];
         this.playerList = [];
         this.playerDom = [];
+        this.board = board;
 
         this.init();
     }
@@ -86,8 +87,30 @@ class App {
                 success: e => {
                     location.href = `/SportsBoard/board/list?type=${data.type}&p=1`;
                 },
-                error: (req, err) => {
-                    console.log(req.status, err);
+                error: e => {
+                    history.back();
+                }
+            });
+        });
+
+        // 글 수정 버튼 이벤트
+        $("#modify-btn").on("click", e => {
+            if ($("#title").val().trim() === "") return alert('제목을 입력해주세요.');
+            if ($("#content").html().trim() === "") return alert('내용을 입력해주세요.');
+
+            const data = this.getFormData();
+            const urlParams = new URLSearchParams(window.location.search);
+            data.id = urlParams.get('id');
+
+            $.ajax({
+                url: '/SportsBoard/board/modify',
+                type: "POST",
+                data: data,
+                success: e => {
+                    location.href = `/SportsBoard/board/list?type=${data.type}&p=1`;
+                },
+                error: e => {
+                    history.back();
                 }
             });
         });
