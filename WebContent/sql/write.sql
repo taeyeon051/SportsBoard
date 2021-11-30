@@ -11,6 +11,7 @@ create table writings (
 	content clob,
 	teamList varchar2(500),
 	playerList varchar2(500),
+	views number(10) default 0,
 	constraint writings_pk primary key (w_code),
 	constraint type_check check (w_type in ('baseball', 'worldbaseball', 'soccer', 'wolrdsoccer', 'golf', 'basketball', 'volleyball'))
 );
