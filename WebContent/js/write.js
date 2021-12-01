@@ -19,6 +19,7 @@ class Write {
         this.teamDomList = document.querySelectorAll(".team-list>.btn");
         this.playerDom = document.querySelectorAll(".player-list");
 
+        if (this.board != null) this.boardRender();
         this.addEvent();
     }
 
@@ -54,7 +55,6 @@ class Write {
 
         // 글 작성 설명 팝업
         $("#ex-btn").on("click", e => {
-            log(e);
             $(".ex-box").css({ 'display': 'flex' });
         });
 
@@ -101,6 +101,8 @@ class Write {
             const data = this.getFormData();
             const urlParams = new URLSearchParams(window.location.search);
             data.id = urlParams.get('id');
+            data.type = urlParams.get('type');
+            data.writerId = this.board.writerId;
 
             $.ajax({
                 url: '/SportsBoard/board/modify',
@@ -212,5 +214,28 @@ class Write {
         formData.playerList = JSON.stringify(playerList);
 
         return formData;
+    }
+
+    boardRender() {
+        const { board, teamDomList } = this;
+        const title = document.querySelector("#title");
+        const content = document.querySelector("#content");
+        const teamList = JSON.parse(board.teamList);
+        const playerList = JSON.parse(board.playerList);
+
+        title.value = board.title;
+        content.innerHTML = board.content;
+        this.teamList = teamList;
+        this.playerList = playerList;
+
+        teamList.forEach(team => {
+            teamDomList.forEach(teamBtn => {
+                if (teamBtn.innerHTML == team) {
+                    teamBtn.classList.add("active");
+                }
+            });
+        });
+
+        this.playerListRender();
     }
 }

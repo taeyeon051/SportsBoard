@@ -16,6 +16,7 @@
     <% if (teamList.size() > 0 && (teamList.contains("LA 다저스") || teamList.contains("첼시 FC"))) { %>
 		<link rel="stylesheet" href="<%=path%>/css/wb.css">
     <% } %>
+    <script src="<%= path %>/js/write.js"></script>
 </head>
 
 <%	
@@ -33,8 +34,8 @@
     <div class="write-header mt-5 mb-3 d-flex justify-content-between">
         <h3>글쓰기</h3>
         <div class="btns">
-            <a href="<%= path %>/board/list?type=<%= request.getParameter("type") %>" class="btn btn-dark">목록</a>
-            <button id="write-btn" class="btn btn-dark">작성</button>
+            <a href="<%= path %>/board/list?type=<%= request.getParameter("type") %>&p=1" class="btn btn-dark">목록</a>
+            <button id="modify-btn" class="btn btn-dark">수정</button>
         </div>
     </div>
     <div class="w-100 d-flex justify-content-between">
@@ -93,6 +94,8 @@
     </div>
 </section>
 
-<script src="<%= path %>/js/write.js"></script>
+<script>
+	const write = new Write(<%= json %>);
+</script>
 
 <%@ include file="../footer.jsp"%>
