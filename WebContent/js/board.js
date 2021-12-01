@@ -1,5 +1,3 @@
-const log = console.log;
-
 class Board {
     constructor(list) {
         this.boardList = list;
