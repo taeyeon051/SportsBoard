@@ -14,6 +14,7 @@ import controller.board.BoardListPageController;
 import controller.board.BoardViewPageController;
 import controller.board.DeletePageController;
 import controller.board.ModifyPageController;
+import controller.board.VideoUploadPageController;
 import controller.board.WritePageController;
 import controller.user.LoginController;
 import controller.user.LogoutController;
