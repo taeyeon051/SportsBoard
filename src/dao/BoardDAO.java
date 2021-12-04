@@ -128,4 +128,27 @@ public class BoardDAO {
 		
 		return n;
 	}
+
+	public int viewPlus(int code) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update writings set views = (select views from writings where w_code = ?) + 1 where w_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			pstmt.setInt(2, code);
+			
+			n = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt);
+		}
+		
+		return n;
+	}
 }
