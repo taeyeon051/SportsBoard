@@ -23,7 +23,7 @@
     width: 400px;
     height: 75px;
     position: absolute;
-    top: 55px;
+    top: 45px;
     left: 380px;
     z-index: 100;
     background-color: #fff;
@@ -32,7 +32,8 @@
 }
 
 .upload.ex-box {
-    top: 39px;
+    top: -20px;
+    left: 190px;
 }
 
 .ex-box>.inner {
