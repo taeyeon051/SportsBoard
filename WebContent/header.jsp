@@ -83,6 +83,6 @@
             <a href="<%= path %>/videoList">영상목록</a>
             <% if (user != null && !type.equals("home")) { %>
             	<a href="<%= path %>/board/write?type=<%= type %>" class="<%= request.getRequestURI().equals("/SportsBoard/view/write.jsp") ? "selected" : "" %>">글쓰기</a>
-            	<a href="<%= path %>/upload.html">영상올리기</a>
+            	<a href="<%= path %>/board/upload?type=<%= type %>" class="<%= request.getRequestURI().equals("/SportsBoard/view/upload.jsp") ? "selected" : "" %>">영상올리기</a>
             <% } %>
         </div>
