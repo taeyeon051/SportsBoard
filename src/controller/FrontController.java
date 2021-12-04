@@ -10,6 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.board.BoardListPageController;
+import controller.board.BoardViewPageController;
+import controller.board.DeletePageController;
+import controller.board.ModifyPageController;
+import controller.board.WritePageController;
+import controller.user.LoginController;
+import controller.user.LogoutController;
+import controller.user.RegisterController;
+
 @WebServlet(urlPatterns = {"/user/*", "/main", "/board/*"})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,14 +35,14 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/user/logout", new LogoutController());
 		// 메인페이지
 		controllerMap.put("/main", new MainPageController());
-		// 글 작성, 수정, 삭제
+		// 글 작성, 수정, 삭제, 목록, 보기
 		controllerMap.put("/board/write", new WritePageController());
 		controllerMap.put("/board/modify", new ModifyPageController());
 		controllerMap.put("/board/delete", new DeletePageController());
-		// 글 목록
 		controllerMap.put("/board/list", new BoardListPageController());
-		// 글 보기
 		controllerMap.put("/board/view", new BoardViewPageController());
+		// 영상 업로드, 삭제, 목록, 보기
+		controllerMap.put("/board/upload", new VideoUploadPageController());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
