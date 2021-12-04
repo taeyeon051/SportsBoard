@@ -55,6 +55,7 @@ class Write {
 
         // 글 작성 설명 팝업
         $("#ex-btn").on("click", e => {
+        	log(e);
             $(".ex-box").css({ 'display': 'flex' });
         });
 
@@ -150,7 +151,7 @@ class Write {
             success: e => {
                 if (e.trim() == "오류") return alert("파일 업로드 중 오류 발생.");
                 const reader = new FileReader();
-                reader.onload = () => { this.makeImgDom(e.trim(), reader.result); };
+                reader.onload = () => { this.makeImgDom(e.trim()); };
                 reader.readAsDataURL(file);
             },
             error: (req, err) => {
@@ -188,7 +189,7 @@ class Write {
         });
     }
 
-    makeImgDom(filename, src) {
+    makeImgDom(filename) {
         const content = document.querySelector("#content");
 
         const img = document.createElement("img");
