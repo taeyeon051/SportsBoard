@@ -8,7 +8,7 @@
 %>
 <head>
     <link rel="stylesheet" href="<%=path%>/css/write.css">
-    <% if (teamList.size() > 0 && (teamList.contains("LA 다저스") || teamList.contains("첼시 FC"))) { %>
+    <% if (type.contains("world")) { %>
 		<link rel="stylesheet" href="<%=path%>/css/wb.css">
     <% } %>
 </head>
@@ -61,7 +61,9 @@
                         <i class="fas fa-file-image"></i>
                     </button>
                 </div>
-                <i id="ex-btn" class="ms-2 fs-6 far fa-question-circle"></i>
+                <div id="ex-btn" class="ms-2">
+                	<i class="fs-6 far fa-question-circle"></i>
+                </div>
             </div>
             <div class="ex-box">
                 <div class="inner">
@@ -76,7 +78,7 @@
         <div class="select-area">
         	<% if (isTeamList) { %>
             	<h5 class="fw-bold text-center">관련 팀 선택</h5>
-            	<div class="team-list w-100 mt-2 <%= teamList.contains("LA 다저스") ? "" : "btn-group-vertical" %>">
+            	<div class="team-list w-100 mt-2 <%= type.contains("world") ? "" : "btn-group-vertical" %>">
             		<% for (String data : teamList) { %>
             			<span class="btn btn-outline-dark"><%= data %></span>	
             		<% } %>
