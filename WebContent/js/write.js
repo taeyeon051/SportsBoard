@@ -55,7 +55,6 @@ class Write {
 
         // 글 작성 설명 팝업
         $("#ex-btn").on("click", e => {
-        	log(e);
             $(".ex-box").css({ 'display': 'flex' });
         });
 
@@ -129,7 +128,7 @@ class Write {
 
             if (file.length < 1) return;
 
-            this.uploadFile(file);
+            this.uploadFile();
         });
 
         $("#form-image-add").on("click", e => {
@@ -138,7 +137,7 @@ class Write {
         });
     }
 
-    uploadFile(file) {
+    uploadFile() {
         const formData = new FormData($("#img-form")[0]);
         $.ajax({
             url: '/SportsBoard/view/fileupload.jsp',
@@ -150,9 +149,7 @@ class Write {
             processData: false,
             success: e => {
                 if (e.trim() == "오류") return alert("파일 업로드 중 오류 발생.");
-                const reader = new FileReader();
-                reader.onload = () => { this.makeImgDom(e.trim()); };
-                reader.readAsDataURL(file);
+                this.makeImgDom(e.trim());
             },
             error: (req, err) => {
                 log(req.status, err);

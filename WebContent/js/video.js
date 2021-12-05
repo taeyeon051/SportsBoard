@@ -10,6 +10,8 @@ class Video {
         this.teamDomList = [];
         this.playerList = [];
         this.playerDom = [];
+        this.imageName = "";
+        this.videoName = "";
 
         this.init();
     }
@@ -53,6 +55,7 @@ class Video {
         // 썸네일 이미지 삽입
         $("#thumbnail-image").on("change", e => {
             const file = e.target.files[0];
+            this.imageName = "";
             if (file != null && file.type.split('/')[0] != "image") {
                 alert('이미지 파일을 선택해 주세요.');
                 e.target.value = "";
@@ -61,12 +64,51 @@ class Video {
 
             if (file.length < 1) return;
 
-            this.uploadFile(file);
+            this.uploadFile(file, $("#img-form")[0]);
+        });
+
+        // 영상 업로드
+        $("#video-file").on("change", e => {
+            const file = e.target.files[0];
+            this.videoName = "";
+            if (file != null && file.type.split('/')[1] != "mp4") {
+                alert('mp4 파일을 선택해 주세요.');
+                e.target.value = "";
+                return;
+            }
+
+            if (file.length < 1) return;
+
+            this.uploadFile(file, $("#video-form")[0]);
+        });
+
+        // 업로드 버튼 이벤트
+        $("#upload-btn").on("click", e => {
+            const { imageName: image, videoName: video} = this;
+            if ($("#title").val().trim() === "") return alert('제목을 입력해주세요.');
+            if (image == "" || video == "") return alert('영상 혹은 썸네일 이미지가 없습니다.');
+
+            const data = this.getFormData();
+            const urlParams = new URLSearchParams(window.location.search);
+            data.type = urlParams.get('type');
+
+            $.ajax({
+                url: '/SportsBoard/board/upload',
+                type: 'POST',
+                data: data,
+                success: e => {
+                    location.href = `/SportsBoard/board/videoList?type=${data.type}&p=1`;
+                },
+                error: e => {
+                    history.back();
+                }
+            });
         });
     }
 
-    uploadFile(file) {
-        const formData = new FormData($("#img-form")[0]);
+    uploadFile(file, form) {
+        const formData = new FormData(form);
+        const type = file.type.split('/')[0];
         $.ajax({
             url: '/SportsBoard/view/fileupload.jsp',
             type: 'POST',
@@ -76,11 +118,15 @@ class Video {
             contentType: false,
             processData: false,
             success: e => {
-                log(e);
                 if (e.trim() == "오류") return alert("파일 업로드 중 오류 발생.");
-                const reader = new FileReader();
-                reader.onload = () => { this.makeImgDom(e.trim(), reader.result); };
-                reader.readAsDataURL(file);
+
+                const fileName = e.trim();
+                if (type == "image") {
+                    this.makeImgDom(fileName);
+                    this.imageName = `/SportsBoard/upload/${fileName}`;
+                } else if (type == "video") {
+                    this.videoName = `/SportsBoard/upload/${fileName}`;
+                }
             },
             error: (req, err) => {
                 log(req.status, err);
@@ -89,13 +135,11 @@ class Video {
         });
     }
 
-    makeImgDom(filename, src) {
+    makeImgDom(filename) {
         const imgDom = document.querySelector(".thumbnail-image");
 
         const img = document.createElement("img");
-        // img.classList.add("content-img");
-        img.src = src;
-        // img.src = `/SportsBoard/upload/${filename}`;
+        img.src = `/SportsBoard/upload/${filename}`;
         img.alt = filename;
 
         imgDom.appendChild(img);
@@ -127,5 +171,21 @@ class Video {
             li.innerHTML = pl;
             plDom.appendChild(li);
         });
+    }
+
+    getFormData() {
+        const { teamList, playerList, imageName, videoName } = this;
+
+        let title = document.querySelector("#title").value;
+        playerList.forEach(p => { title = title.replace(`/${p}/`, p); });
+
+        const formData = {};
+        formData.title = title;
+        formData.imageName = imageName;
+        formData.videoName = videoName;
+        formData.teamList = JSON.stringify(teamList);
+        formData.playerList = JSON.stringify(playerList);
+
+        return formData;
     }
 }
