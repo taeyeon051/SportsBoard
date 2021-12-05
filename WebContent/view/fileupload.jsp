@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String fileName = "";
-	int size = 300 * 1024 * 1024;
+	int size = 500 * 1024 * 1024;
 	
 	try {			
 		String realPath = request.getServletContext().getRealPath("upload");
@@ -15,7 +15,7 @@
 	
 		MultipartRequest mr = null;
 		mr = new MultipartRequest(request, realPath, size, "utf-8", new DefaultFileRenamePolicy());
-	
+
 		fileName = mr.getFilesystemName("file");
 %>
 		<%= fileName %>
