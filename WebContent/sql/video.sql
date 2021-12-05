@@ -7,11 +7,19 @@ create table videos (
 	v_date varchar2(20),
 	title varchar2(200),
 	uploader_id varchar2(100),
-	uploader_name varchar2(50),
+	image_src varchar2(200),
 	vedio_src varchar2(200),
 	teamList varchar2(500),
 	playerList varchar2(500),
 	views number(10) default 0,
 	constraint video_pk primary key (v_code),
-	constraint type_check check (v_type in ('baseball', 'worldbaseball', 'soccer', 'wolrdsoccer', 'golf', 'basketball', 'volleyball'))
+	constraint vtype_check check (v_type in ('baseball', 'worldbaseball', 'soccer', 'wolrdsoccer', 'golf', 'basketball', 'volleyball'))
 );
+
+select * from videos where v_code = 1 order by v_code;
+
+-- 영상 번호 가져오기 --
+select max(v_code) + 1 as code from videos;
+
+-- 영상 목록 가져오기 --
+select * from videos order by v_code desc;
