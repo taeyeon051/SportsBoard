@@ -29,12 +29,12 @@
         <h3>영상올리기 <span id="ex-btn"><i class="fs-5 far fa-question-circle"></i></span></h3>
         <div class="btns">
             <button class="btn btn-dark">목록</button>
-            <button class="btn btn-dark">업로드</button>
+            <button id="upload-btn" class="btn btn-dark">업로드</button>
         </div>
         <div class="upload ex-box">
             <div class="inner">
                 <div class="close-exbox">×</div>
-                <p class="mb-0">썸네일 이미지는 꼭 넣어야 하며 한장만 가능합니다.</p>
+                <p class="mb-0">영상은 mp4파일만 가능하며 최대 500MB까지만 가능합니다.</p>
 				<p class="mb-0">선수이름 앞,뒤에 /를 붙이면 넣으면 관련 선수에 표시됩니다.</p>
 				<p class="mb-0">ex) /이정후/</p>
             </div>
@@ -44,11 +44,13 @@
         <div class="write-area">
             <input type="text" id="title" class="form-control mt-1" placeholder="제목">
             <h5 class="mt-4 fw-bold">영상 선택</h5>
-            <input type="file" class="form-control" id="video-file" accept=".mp4">
+            <form id="video-form" class="w-100">
+                <input type="file" name="file" class="form-control" id="video-file" accept=".mp4">
+            </form>
             <div class="thumbnail d-flex flex-column align-items-center">
                 <h5 class="w-100 mt-4 fw-bold">썸네일 사진 선택</h5>
                 <form id="img-form" class="w-100">
-                    <input type="file" class="form-control" id="thumbnail-image" accept="image/*">
+                    <input type="file" name="file" class="form-control" id="thumbnail-image" accept="image/*">
                 </form>
                 <div class="thumbnail-image mt-3"></div>
             </div>
