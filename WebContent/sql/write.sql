@@ -16,7 +16,7 @@ create table writings (
 	constraint type_check check (w_type in ('baseball', 'worldbaseball', 'soccer', 'wolrdsoccer', 'golf', 'basketball', 'volleyball'))
 );
 
-select w_code, w_type, title, DBMS_LOB.SUBSTR(content, DBMS_LOB.GETLENGTH(content)), teamList, playerList from writings where w_code = ? order by w_code;
+select * from writings where w_code = ? order by w_code;
 
 -- 글 번호 가져오기 --
 select max(w_code) + 1 as code from writings;
