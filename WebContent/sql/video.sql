@@ -8,7 +8,8 @@ create table videos (
 	title varchar2(200),
 	uploader_id varchar2(100),
 	image_src varchar2(200),
-	vedio_src varchar2(200),
+	video_src varchar2(200),
+	video_time varchar2(7),
 	teamList varchar2(500),
 	playerList varchar2(500),
 	views number(10) default 0,
@@ -16,7 +17,7 @@ create table videos (
 	constraint vtype_check check (v_type in ('baseball', 'worldbaseball', 'soccer', 'wolrdsoccer', 'golf', 'basketball', 'volleyball'))
 );
 
-select * from videos where v_code = 1 order by v_code;
+select * from videos where v_code = ? order by v_code;
 
 -- 영상 번호 가져오기 --
 select max(v_code) + 1 as code from videos;

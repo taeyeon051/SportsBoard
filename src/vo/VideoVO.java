@@ -8,6 +8,7 @@ public class VideoVO {
 	private String uploaderId;
 	private String imageSrc;
 	private String videoSrc;
+	private String videoTime;
 	private String teamList;
 	private String playerList;
 	private int views;
@@ -66,6 +67,14 @@ public class VideoVO {
 
 	public void setVideoSrc(String videoSrc) {
 		this.videoSrc = videoSrc;
+	}
+
+	public String getVideoTime() {
+		return videoTime;
+	}
+
+	public void setVideoTime(String videoTime) {
+		this.videoTime = videoTime;
 	}
 
 	public String getTeamList() {

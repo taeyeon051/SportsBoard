@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JdbcUtil;
 import vo.UserVO;
@@ -42,7 +43,7 @@ public class VideoDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into videos values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into videos values(?, ?, to_char(sysdate,'yyyy.mm.dd hh24:mi'), ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -53,9 +54,10 @@ public class VideoDAO {
 			pstmt.setString(4, user.getUserId());
 			pstmt.setString(5, vo.getImageSrc());
 			pstmt.setString(6, vo.getVideoSrc());
-			pstmt.setString(7, vo.getTeamList());
-			pstmt.setString(8, vo.getPlayerList());
-			pstmt.setInt(9, 0);
+			pstmt.setString(7, vo.getVideoTime());
+			pstmt.setString(8, vo.getTeamList());
+			pstmt.setString(9, vo.getPlayerList());
+			pstmt.setInt(10, 0);
 			
 			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -65,5 +67,64 @@ public class VideoDAO {
 		}
 		
 		return n;
+	}
+
+	public double getVideoCnt(String type) {
+		double cnt = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as cnt from videos where v_type = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) cnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return cnt;
+	}
+
+	public ArrayList<VideoVO> getVideoList(String type) {
+		ArrayList<VideoVO> videoList = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from videos where v_type = ? order by v_code desc";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				VideoVO vo = new VideoVO();
+				vo.setvCode(rs.getInt("v_code"));
+				vo.setvType(rs.getString("v_type"));
+				vo.setvDate(rs.getString("v_date"));
+				vo.setTitle(rs.getString("title"));
+				vo.setImageSrc(rs.getString("image_src"));
+				vo.setVideoTime(rs.getString("video_time"));
+				vo.setViews(rs.getInt("views"));
+				
+				videoList.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return videoList;
 	}
 }
