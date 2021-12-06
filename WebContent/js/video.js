@@ -100,7 +100,7 @@ class Video {
                 type: 'POST',
                 data: data,
                 success: e => {
-                    location.href = `/SportsBoard/board/videoList?type=${data.type}&p=1`;
+                    location.href = `/SportsBoard/board/videoList?type=${data.type}`;
                 },
                 error: e => {
                     history.back();
