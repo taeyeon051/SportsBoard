@@ -71,7 +71,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(80%);
 }
 
 /* 관련 팀, 선수 선택 영역 */
