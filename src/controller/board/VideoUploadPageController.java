@@ -40,6 +40,8 @@ public class VideoUploadPageController implements Controller {
 		vo.setTitle(request.getParameter("title"));
 		vo.setImageSrc(request.getParameter("imageName"));
 		vo.setVideoSrc(request.getParameter("videoName"));
+		System.out.println(request.getParameter("videoTime"));
+		vo.setVideoTime(request.getParameter("videoTime"));
 		vo.setTeamList(request.getParameter("teamList"));
 		vo.setPlayerList(request.getParameter("playerList"));
 		
