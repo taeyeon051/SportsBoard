@@ -61,8 +61,6 @@ public class BoardDAO {
 				vo.setTitle(rs.getString("title"));
 				vo.setWriterName(rs.getString("writer_name"));
 				vo.setContent(rs.getString("content"));
-				vo.setTeamList(rs.getString("teamList"));
-				vo.setPlayerList(rs.getString("playerList"));
 				
 				boardList.add(vo);
 			}

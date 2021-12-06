@@ -12,6 +12,7 @@ class Video {
         this.playerDom = [];
         this.imageName = "";
         this.videoName = "";
+        this.videoTime = "";
 
         this.init();
     }
@@ -19,6 +20,7 @@ class Video {
     init() {
         this.teamDomList = document.querySelectorAll(".team-list>.btn");
         this.playerDom = document.querySelectorAll(".player-list");
+        document.querySelector("#upload-btn").disabled = true;
 
         this.addEvent();
     }
@@ -70,7 +72,7 @@ class Video {
         // 영상 업로드
         $("#video-file").on("change", e => {
             const file = e.target.files[0];
-            this.videoName = "";
+            this.videoName, this.videoTime = "";
             if (file != null && file.type.split('/')[1] != "mp4") {
                 alert('mp4 파일을 선택해 주세요.');
                 e.target.value = "";
@@ -84,9 +86,10 @@ class Video {
 
         // 업로드 버튼 이벤트
         $("#upload-btn").on("click", e => {
-            const { imageName: image, videoName: video} = this;
+            const { imageName: image, videoName: video, videoTime: time } = this;
             if ($("#title").val().trim() === "") return alert('제목을 입력해주세요.');
             if (image == "" || video == "") return alert('영상 혹은 썸네일 이미지가 없습니다.');
+            if (time == "") return alert('영상 길이를 계산 중입니다. 잠시 후에 다시 시도해 주세요.');
 
             const data = this.getFormData();
             const urlParams = new URLSearchParams(window.location.search);
@@ -125,7 +128,7 @@ class Video {
                     this.makeImgDom(fileName);
                     this.imageName = `/SportsBoard/upload/${fileName}`;
                 } else if (type == "video") {
-                    this.videoName = `/SportsBoard/upload/${fileName}`;
+                    this.videoUpload(file, fileName);
                 }
             },
             error: (req, err) => {
@@ -135,6 +138,31 @@ class Video {
         });
     }
 
+    videoUpload(file, fileName) {
+        const video = document.createElement("video");
+        video.preload = 'metadata';
+        video.src = URL.createObjectURL(file);
+        
+        const upload = new Promise((res, rej) => {
+            video.onloadedmetadata = () => {
+                window.URL.revokeObjectURL(video.src);
+                const time = Math.round(video.duration);
+                const min = Math.floor(time / 60);
+                const sec = time % 60;
+                const videoTime = `${min < 10 ? '0' + min : min}:${sec}`;
+                
+                res(videoTime);
+            }
+        });
+        
+        upload.then((time) => {
+        	this.videoTime = time;
+        	document.querySelector("#upload-btn").disabled = false;
+        });
+        
+        this.videoName = `/SportsBoard/upload/${fileName}`;
+    }
+    
     makeImgDom(filename) {
         const imgDom = document.querySelector(".thumbnail-image");
 
@@ -174,7 +202,7 @@ class Video {
     }
 
     getFormData() {
-        const { teamList, playerList, imageName, videoName } = this;
+        const { teamList, playerList, imageName, videoName, videoTime } = this;
 
         let title = document.querySelector("#title").value;
         playerList.forEach(p => { title = title.replace(`/${p}/`, p); });
@@ -183,6 +211,7 @@ class Video {
         formData.title = title;
         formData.imageName = imageName;
         formData.videoName = videoName;
+        formData.videoTime = videoTime;
         formData.teamList = JSON.stringify(teamList);
         formData.playerList = JSON.stringify(playerList);
 

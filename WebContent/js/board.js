@@ -1,13 +1,12 @@
 class Board {
     constructor(list) {
         this.boardList = list;
-        this.urlParams = new URLSearchParams(window.location.search);
 
         this.init();
     }
 
     init() {
-        const { boardList, urlParams } = this;
+        const { boardList } = this;
 
         if (boardList.length < 1) {
             alert('해당 페이지에 게시된 글이 없습니다.');
@@ -20,7 +19,7 @@ class Board {
     }
 
     renderList(board) {
-        const { urlParams } = this;
+        const urlParams = new URLSearchParams(window.location.search);
         const type = urlParams.get('type');
         const listDom = document.querySelector("#board-list");
         
