@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.board.VideoViewPageController;
 import controller.board.VideoListPageController;
 import controller.board.BoardListPageController;
 import controller.board.BoardViewPageController;
@@ -45,7 +46,8 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/board/view", new BoardViewPageController());
 		// 영상 업로드, 삭제, 목록, 보기
 		controllerMap.put("/board/upload", new VideoUploadPageController());
-		controllerMap.put("/board/videoList", new VideoListPageController());
+		controllerMap.put("/board/video/list", new VideoListPageController());
+		controllerMap.put("/board/video/view", new VideoViewPageController());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

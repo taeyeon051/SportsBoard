@@ -31,7 +31,7 @@
 		        </div>
 		        <div class="video-text">
 		            <h5 class="video-title">
-		                <a href="/SportsBoard/board/videoView?type=<%= video.getvType() %>&id=<%= video.getvCode() %>"><%= video.getTitle() %></a>
+		                <a href="/SportsBoard/board/video/view?type=<%= video.getvType() %>&id=<%= video.getvCode() %>"><%= video.getTitle() %></a>
 		            </h5>
 		            <div class="view-date">
 		            	<%

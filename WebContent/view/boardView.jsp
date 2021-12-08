@@ -7,15 +7,7 @@
     <link rel="stylesheet" href="<%=path%>/css/view.css">
 	<script src="<%= path %>/js/delete.js"></script>
 </head>
-<%
-	BoardVO vo = (BoardVO) request.getAttribute("board");
-	if (vo == null) {
-%>
-	<script>
-		alert('해당 아이디의 게시글이 없습니다.');
-		history.back();
-	</script>
-<% } %>
+<% BoardVO vo = (BoardVO) request.getAttribute("board"); %>
 
 <!-- 글 영역 -->
 <section id="view">
