@@ -1,7 +1,6 @@
 package controller.board;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +20,10 @@ public class BoardViewPageController implements Controller {
 		
 		BoardDAO dao = new BoardDAO();
 		BoardVO vo = dao.getBoard(code);
-		if (vo == null) {
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('존재하지 않는 글입니다.');");
-			out.println("history.back();");
-			out.println("</script>");
+		System.out.println(vo.getwCode());
+		if (vo.getwCode() < 1) {
+			request.setAttribute("alert", "해당 아이디의 글이 존재하지 않습니다.");
+			return new MyView("/index.jsp");
 		}
 		
 		request.setAttribute("board", vo);

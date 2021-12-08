@@ -16,12 +16,14 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select count(*) as cnt from writings where w_type = ?";
+		String sql = "";
+		if (type.equals("home")) sql = "select count(*) as cnt from writings";
+		else sql = "select count(*) as cnt from writings where w_type = ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, type);
+			if (!type.equals("home")) pstmt.setString(1, type);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) cnt = rs.getInt("cnt");
@@ -40,17 +42,29 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * "
-				+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w "
-				+ "where w_type = ?) "
-				+ "where num between ? and ?";
+		String sql = "";
+		if (type.equals("home")) {
+			sql = "select * "
+					+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w) "
+					+ "where num between ? and ?";
+		} else {			
+			sql = "select * "
+					+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w "
+					+ "where w_type = ?) "
+					+ "where num between ? and ?";
+		}
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, type);
-			pstmt.setInt(2, end - 9);
-			pstmt.setInt(3, end);
+			if (type.equals("home")) {
+				pstmt.setInt(1, end - 9);
+				pstmt.setInt(2, end);
+			} else {
+				pstmt.setString(1, type);
+				pstmt.setInt(2, end - 9);
+				pstmt.setInt(3, end);
+			}
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
