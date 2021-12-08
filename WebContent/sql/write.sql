@@ -13,7 +13,7 @@ create table writings (
 	playerList varchar2(500),
 	views number(10) default 0,
 	constraint writings_pk primary key (w_code),
-	constraint type_check check (w_type in ('baseball', 'worldbaseball', 'soccer', 'wolrdsoccer', 'golf', 'basketball', 'volleyball'))
+	constraint type_check check (w_type in ('baseball', 'worldbaseball', 'soccer', 'worldsoccer', 'golf', 'basketball', 'volleyball'))
 );
 
 select * from writings where w_code = ? order by w_code;
