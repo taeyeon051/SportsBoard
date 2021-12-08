@@ -72,7 +72,7 @@
     margin-top: 30px;
 }
 
-.video-date {
+#video-view .view-date {
     display: flex;
     margin-top: 15px;
 }
