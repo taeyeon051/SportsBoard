@@ -127,4 +127,36 @@ public class VideoDAO {
 		
 		return videoList;
 	}
+
+	public VideoVO getVideo(int code) {
+		VideoVO vo = new VideoVO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from videos where v_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setvCode(rs.getInt("v_code"));
+				vo.setvType(rs.getString("v_type"));
+				vo.setvDate(rs.getString("v_date"));
+				vo.setTitle(rs.getString("title"));
+				vo.setUploaderId(rs.getString("uploader_id"));
+				vo.setVideoSrc(rs.getString("video_src"));
+				vo.setViews(rs.getInt("views"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
 }

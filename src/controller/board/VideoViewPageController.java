@@ -8,26 +8,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.MyView;
-import dao.BoardDAO;
-import vo.BoardVO;
+import dao.VideoDAO;
+import vo.VideoVO;
 
-public class BoardViewPageController implements Controller {
+public class VideoViewPageController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		int code = Integer.parseInt(request.getParameter("id"));
 		
-		BoardDAO dao = new BoardDAO();
-		BoardVO vo = dao.getBoard(code);
-
-		if (vo.getwCode() < 1) {
-			request.setAttribute("alert", "해당 아이디의 글이 존재하지 않습니다.");
+		VideoDAO dao = new VideoDAO();
+		VideoVO vo = dao.getVideo(code);
+		
+		if (vo.getvCode() < 1) {
+			request.setAttribute("alert", "해당 아이디의 영상이 존재하지 않습니다.");
 			return new MyView("/index.jsp");
 		}
 		
-		request.setAttribute("board", vo);
-		
-		return new MyView("/view/boardView.jsp");
+		request.setAttribute("video", vo);
+
+		return new MyView("/view/videoView.jsp");
 	}
 }
