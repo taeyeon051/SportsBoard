@@ -1,3 +1,4 @@
+<%@page import="vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
@@ -10,6 +11,12 @@
 		location.href = "/SportsBoard/main?type=home";
 	}
 </script>
+
+<%
+	ArrayList<BoardVO> viewsList = (ArrayList) request.getAttribute("viewsList");
+	ArrayList<BoardVO> latestList = (ArrayList) request.getAttribute("latestList");
+	String boardPath = path + "/board/view?type=";
+%>
 
 <!-- 메인 영역 -->
 <section id="main" class="d-flex justify-content-between pt-4 pb-3 mb-3">
@@ -24,34 +31,30 @@
 	<div class="ranking">
 		<div class="ranking-header mx-auto my-3 text-center">많이 본 글</div>
 		<ol>
-			<li><b class="rank">1</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">2</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">3</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">4</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">5</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">6</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">7</b> <a href="#">asdfqweraskglasdj</a></li>
-			<li><b class="rank">8</b> <a href="#">asdfqweraskglasdjadsflkjadslkdsalkds</a>
-			</li>
-			<li><b class="rank">9</b> <a href="#">asdfqweraskglasdjadsflkjadslkdsalkds</a>
-			</li>
-			<li><b class="rank">10</b> <a href="#">asdfqweraskglasdjadsflkjadslkdsalkds</a>
-			</li>
+			<%
+				int i = 1;
+				for (BoardVO data : viewsList) {
+			%>
+				<% if (data != null) { %>
+					<li>
+						<b class="rank"><%= i %></b>
+						<a href="<%= boardPath %><%= data.getwType() %>&id=<%= data.getwCode() %>"><%= data.getTitle() %></a>
+					</li>
+				<%
+					}
+					i++;
+				%>
+			<% } %>
 		</ol>
 	</div>
 	<div class="latest">
 		<div class="latest-header mx-auto my-3 text-center">최신 글</div>
 		<ul>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdj</a></li>
-			<li><a href="#">asdfqweraskglasdjasdfjllkjdsaflkdjsafkjlds</a></li>
-			<li><a href="#">asdfqweraskglasdjasdfjllkjdsaflkdjsafkjlds</a></li>
-			<li><a href="#">asdfqweraskglasdjasdfjllkjdsaflkdjsafkjlds</a></li>
+			<% for (BoardVO data : latestList) { %>
+				<li>
+					<a href="<%= boardPath %><%= data.getwType() %>&id=<%= data.getwCode() %>"><%= data.getTitle() %></a>
+				</li>
+			<% } %>
 		</ul>
 	</div>
 </section>
@@ -59,8 +62,7 @@
 <!-- 하이라이트 영상 영역 -->
 <section id="highlight" class="position-relative mb-5">
 	<h5 class="fw-bold">하이라이트 영상</h5>
-	<a href="#" class="more-view-btn position-absolute">더보기 <i
-		class="fas fa-angle-right"></i></a>
+	<a href="#" class="more-view-btn position-absolute">더보기 <i class="fas fa-angle-right"></i></a>
 	<div class="videos d-flex mt-3">
 		<a href="#" class="video">
 			<div class="video-image">
