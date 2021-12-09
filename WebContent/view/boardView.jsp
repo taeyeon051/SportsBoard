@@ -35,7 +35,7 @@
 </section>
 
 <script>
-	const view = new Delete("<%= vo.getwCode() %>", "<%= vo.getWriterId() %>");
+	const view = new Delete("<%= vo.getwCode() %>", "<%= vo.getWriterId() %>", false);
 </script>
 
 <%@ include file="../footer.jsp"%>

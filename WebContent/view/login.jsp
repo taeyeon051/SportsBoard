@@ -9,7 +9,7 @@
 	if (user != null) {
 %>
 		<script>
-			location.href = "/SportsBoard/main/baseball";
+			location.href = "<%= path %>/main/baseball";
 		</script>
 <%		
 	}

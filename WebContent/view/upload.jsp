@@ -17,7 +17,7 @@
 	if (user == null) {
 %>
 		<script>
-			location.href = "/SportsBoard/user/login";
+			location.href = "<%= path %>/user/login";
 		</script>
 <%		
 	}

@@ -1,6 +1,5 @@
-<%@page import="java.text.*"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="vo.VideoVO"%>
-<%@page import="com.google.gson.Gson"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
@@ -31,7 +30,7 @@
 		        </div>
 		        <div class="video-text">
 		            <h5 class="video-title">
-		                <a href="/SportsBoard/board/video/view?type=<%= video.getvType() %>&id=<%= video.getvCode() %>"><%= video.getTitle() %></a>
+		                <a href="<%= path %>/board/video/view?type=<%= video.getvType() %>&id=<%= video.getvCode() %>"><%= video.getTitle() %></a>
 		            </h5>
 		            <div class="view-date">
 		            	<%

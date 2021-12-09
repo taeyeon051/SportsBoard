@@ -23,7 +23,7 @@
 	if (user == null || !board.getWriterId().equals(user.getUserId())) {
 %>
 		<script>
-			location.href = "/SportsBoard/user/login";
+			location.href = "<%= path %>/user/login";
 		</script>
 <%		
 	}
