@@ -12,7 +12,7 @@
 	}
 </script>
 
-<%
+<%	
 	ArrayList<BoardVO> viewsList = (ArrayList) request.getAttribute("viewsList");
 	ArrayList<BoardVO> latestList = (ArrayList) request.getAttribute("latestList");
 	String boardPath = path + "/board/view?type=";
