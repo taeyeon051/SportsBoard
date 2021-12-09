@@ -26,8 +26,13 @@ public class BoardViewPageController implements Controller {
 			return new MyView("/index.jsp");
 		}
 		
-		request.setAttribute("board", vo);
-		
-		return new MyView("/view/boardView.jsp");
+		int n = dao.viewPlus(code);
+		if (n > 0) {
+			request.setAttribute("board", vo);
+			return new MyView("/view/boardView.jsp");
+		} else {
+			request.setAttribute("alert", "DB 오류로 인하여 글 불러오기에 실패하였습니다.");
+			return new MyView("/board/list");
+		}
 	}
 }

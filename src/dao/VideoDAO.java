@@ -99,12 +99,14 @@ public class VideoDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from videos where v_type = ? order by v_code desc";
+		String sql = "";
+		if (type.equals("home")) sql = "select * from videos order by v_code desc";
+		else sql = "select * from videos where v_type = ? order by v_code desc";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, type);
+			if (!type.equals("home")) pstmt.setString(1, type);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -158,5 +160,28 @@ public class VideoDAO {
 		}
 		
 		return vo;
+	}
+	
+	public int viewPlus(int code) {
+		int n = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update videos set views = (select views from videos where v_code = ?) + 1 where v_code = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			pstmt.setInt(2, code);
+			
+			n = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt);
+		}
+		
+		return n;
 	}
 }

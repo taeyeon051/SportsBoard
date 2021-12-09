@@ -119,12 +119,14 @@ public class BoardDAO {
 		return vo;
 	}
 
-	public int deleteBoard(int code) {
+	public int deleteBoard(int code, boolean video) {
 		int n = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "delete from writings where w_code = ?";
+		String sql = "";
+		if (video) sql = "delete from videos where v_code = ?"; 
+		else sql = "delete from writings where w_code = ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {

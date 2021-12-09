@@ -26,8 +26,13 @@ public class VideoViewPageController implements Controller {
 			return new MyView("/index.jsp");
 		}
 		
-		request.setAttribute("video", vo);
-
-		return new MyView("/view/videoView.jsp");
+		int n = dao.viewPlus(code);
+		if (n > 0) {			
+			request.setAttribute("video", vo);
+			return new MyView("/view/videoView.jsp");
+		} else {
+			request.setAttribute("alert", "DB 오류로 인하여 영상 불러오기에 실패하였습니다.");
+			return new MyView("/board/video/list");
+		}
 	}
 }

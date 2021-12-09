@@ -20,20 +20,21 @@ public class DeletePageController implements Controller {
 		
 		HttpSession session = request.getSession();
 		UserVO user = (UserVO) session.getAttribute("user");
+		boolean video = Boolean.parseBoolean(request.getParameter("video"));
 		String writerId = request.getParameter("writerId");
 
 		if (!writerId.equals(user.getUserId())) {
-			request.setAttribute("alert", "해당 글을 삭제 할 권한이 없습니다.");
+			request.setAttribute("alert", "해당 " + (video ? "영상" : "글") + "을 삭제할 권한이 없습니다.");
 			return null;
 		}
 		
 		int code = Integer.parseInt(request.getParameter("no"));
 		
 		String url;
-		int n = dao.deleteBoard(code);
+		int n = dao.deleteBoard(code, video);
 		if (n > 0) url = "/index.jsp";
 		else {
-			request.setAttribute("alert", "DB 오류로 인하여 글 삭제에 실패하였습니다.");
+			request.setAttribute("alert", "DB 오류로 인하여 삭제에 실패하였습니다.");
 			return null;
 		}
 		
