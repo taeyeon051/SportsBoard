@@ -16,7 +16,7 @@
                 <a href="<%= request.getContextPath() %>/main?type=volleyball">배구</a>
             </div>
             <div class="footer-copyright">
-                <p>Copyright &copy; yy. All rights reserved.</p>
+                <p>Copyright &copy; Kakao Corp. All rights reserved.</p>
             </div>
         </div>
     </footer>
