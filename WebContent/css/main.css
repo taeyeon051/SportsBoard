@@ -8,20 +8,45 @@
 
 /* 포토 */
 
-.photo-news {
+#main-box {
     width: 450px;
     height: 350px;
+    border-radius: 5px;	
 }
 
-.photo img {
+#photo img {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    object-fit: cover;
-    object-position: center;
     border-radius: 5px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 5px;
+    filter: brightness(70%);
+    transition: transform 1s;
+}
+
+#photo .text {
+	bottom: 20px;
+	left: 0;
+	font-size: 24px;
+	padding: 0 20px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	transition: bottom 1s;
+}
+
+#photo:hover img {
+	filter: brightness(50%);
+	transform: scale(1.1);
+}
+
+#photo:hover .text {
+	bottom: 40px;
+	text-decoration: underline;
 }
 
 
@@ -73,6 +98,10 @@
     font-size: 12px;
 }
 
+.videos {
+	height: 200px;
+}
+
 .video {
     margin-right: 9px;
 }
@@ -83,6 +112,7 @@
 
 .video-image {
     width: 212px;
+    height: 118px;
     position: relative;
 }
 
@@ -146,6 +176,12 @@
 
 /* 팀별, 선수별 글 영역 */
 
+#players {
+	border-top: 1px solid #e9e9e9;
+    border-right: 1px solid #e9e9e9;
+	padding: 35px 0 100px;
+}
+
 .ex-box {
     width: 360px;
     height: 60px;
@@ -198,6 +234,7 @@
 
 .team-news-list,
 .player-news-list {
+	height: 255px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
@@ -244,8 +281,4 @@
     color: #94989c;
     font-weight: bold;
     font-size: 14px;
-}
-
-.player-news-list {
-    padding-bottom: 30px;
 }
