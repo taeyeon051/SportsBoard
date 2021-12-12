@@ -22,7 +22,7 @@ import controller.user.LoginController;
 import controller.user.LogoutController;
 import controller.user.RegisterController;
 
-@WebServlet(urlPatterns = {"/user/*", "/main", "/board/*"})
+@WebServlet(urlPatterns = {"/user/*", "/main", "/board/*", "/main/list"})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, Controller> controllerMap = new HashMap<>();
@@ -38,6 +38,7 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/user/logout", new LogoutController());
 		// 메인페이지
 		controllerMap.put("/main", new MainPageController());
+		controllerMap.put("/main/list", new MainPageListController());
 		// 글 작성, 수정, 삭제, 목록, 보기
 		controllerMap.put("/board/write", new WritePageController());
 		controllerMap.put("/board/modify", new ModifyPageController());

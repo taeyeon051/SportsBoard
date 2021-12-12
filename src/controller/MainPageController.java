@@ -20,14 +20,20 @@ public class MainPageController implements Controller {
 		
 		MainDAO dao = new MainDAO();
 		ArrayList<BoardVO> viewsList = dao.getMainList(type, "views");
-		ArrayList<BoardVO> latestList = dao.getMainList(type, "latest"); 
-		ArrayList<VideoVO> videoList = dao.getVideoList(type); 
+		ArrayList<BoardVO> latestList = dao.getMainList(type, "latest");
+		ArrayList<VideoVO> videoList = dao.getVideoList(type);
+		
+		String team = dao.getTeamList(type);
+		String player = dao.getPlayerList(type);
+		team = dao.replaceAll(team);
+		player = dao.replaceAll(player);
 		
 		request.setAttribute("viewsList", viewsList);
 		request.setAttribute("latestList", latestList);
 		request.setAttribute("videoList", videoList);
+		request.setAttribute("teamList", team);
+		request.setAttribute("playerList", player);
 		
 		return new MyView("/index.jsp");
 	}
-
 }

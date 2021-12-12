@@ -19,6 +19,9 @@
 	ArrayList<BoardVO> latestList = (ArrayList) request.getAttribute("latestList");
 	ArrayList<VideoVO> videoList = (ArrayList) request.getAttribute("videoList");
 	String boardPath = path + "/board/view?type=";
+	
+	String teamList = (String) request.getAttribute("teamList");
+	String playerList = (String) request.getAttribute("playerList");
 %>
 
 <!-- 메인 영역 -->
@@ -116,14 +119,14 @@
 </section>
 
 <%
-	if (!type.equals("home")) { 
+	if (!type.equals("home")) {
 		if (!type.equals("golf") && !type.equals("basketball") && !type.equals("volleyball")) {
 %>
 			<!-- 팀별 글 -->
 			<section id="teams">
 				<div class="header mb-3 d-flex position-relative">
 					<h5 class="fw-bold me-3">
-						화제의 팀 <i id="tex-btn" class="far fa-question-circle" style="cursor: pointer"></i>
+						화제의 팀 <span id="tex-btn"><i class="far fa-question-circle" style="cursor: pointer"></i></span>
 					</h5>
 					<div class="ex-box">
 						<div class="inner">
@@ -187,7 +190,7 @@
 	<section id="players">
 		<div class="header mb-3 d-flex position-relative">
 			<h5 class="fw-bold me-3">
-				화제의 선수 <i id="pex-btn" class="far fa-question-circle" style="cursor: pointer"></i>
+				화제의 선수 <span id="pex-btn"><i class="far fa-question-circle" style="cursor: pointer"></i></span>
 			</h5>
 			<div class="ex-box">
 				<div class="inner">
@@ -236,5 +239,9 @@
 		</div>
 	</section>
 <% } %>
+
+<script>
+	const main = new Main("<%= teamList %>", "<%= playerList %>");
+</script>
 
 <%@ include file="footer.jsp"%>
