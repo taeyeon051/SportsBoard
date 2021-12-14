@@ -26,7 +26,7 @@
 			document.querySelector('#submenu').innerHTML = "";
 		}
 
-        document.querySelector("#search-btn").addEventListener("click", e => { search(); });
+        document.querySelector("#search-btn").addEventListener("click", () => { search(); });
 
         window.addEventListener("keydown", e => {
             if (e.keyCode == 13 && document.activeElement.id == "search") search();
