@@ -18,7 +18,6 @@ public class MainPageListController implements Controller {
 		String type = request.getParameter("type");
 		String[] list = request.getParameterValues("list[]");
 		
-		
 		ArrayList<BoardVO> blist = new ArrayList<>();
 		ArrayList<VideoVO> vlist = new ArrayList<>();
 		

@@ -149,40 +149,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="team-news-list">
-					<a href="#" class="team-news"> <img
-						src="https://img1.daumcdn.net/thumb/S120x74ht.u/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fnews%2F202110%2F10%2Fpoctan%2F20211010171039048nqca.jpg&scode=sports"
-						alt="">
-						<div class="team-news-text">
-							<div class="team-news-title">'불청객 가을비' LG는 지옥의 8연전..KT는 두산
-								3연전까지 승부처 !</div>
-							<div class="team-news-date">2021.10.10</div>
-						</div>
-					</a> <a href="#" class="team-news"> <img
-						src="https://img1.daumcdn.net/thumb/S120x74ht.u/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fnews%2F202110%2F10%2Fmydaily%2F20211010144818836inoh.jpg&scode=sports"
-						alt="">
-						<div class="team-news-text">
-							<div class="team-news-title">LG 킬러 데스파이네..우천 취소에도 '나 집에 안 갈래'
-							</div>
-							<div class="team-news-date">2021.10.10</div>
-						</div>
-					</a> <a href="#" class="team-news"> <img
-						src="https://img1.daumcdn.net/thumb/S120x74ht.u/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fnews%2F202110%2F10%2Fxportsnews%2F20211010140517240nmpj.jpg&scode=sports"
-						alt="">
-						<div class="team-news-text">
-							<div class="team-news-title">10일 잠실 KT-LG 우천취소, 11일 오후 2시 개최</div>
-							<div class="team-news-date">2021.10.10</div>
-						</div>
-					</a> <a href="#" class="team-news"> <img
-						src="https://img1.daumcdn.net/thumb/S120x74ht.u/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fnews%2F202110%2F10%2Fspotvnews%2F20211010135949751wuxl.jpg&scode=sports"
-						alt="">
-						<div class="team-news-text">
-							<div class="team-news-title">'선두 경쟁' kt-LG 최종전 우천 연기..11일 월요일
-								경기 확정</div>
-							<div class="team-news-date">2021.10.10</div>
-						</div>
-					</a>
-				</div>
+				<div class="team-news-list"></div>
 			</section>
 		<% } %>
 	
@@ -207,36 +174,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="player-news-list">
-			<a href="#" class="player-news"> <img
-				src="https://img1.daumcdn.net/thumb/S120x74ht.u/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fnews%2F202110%2F10%2Fpoctan%2F20211010211740348ijwd.jpg&scode=sports"
-				alt="">
-				<div class="player-news-text">
-					<div class="player-news-title">'임기영 5승' KIA, 한화에 DH 독식..5.5G차
-						탈꼴찌 싸움 종료</div>
-					<div class="player-news-date">2021.10.10</div>
-				</div>
-			</a> <a href="#" class="player-news"> <img
-				src="https://img1.daumcdn.net/thumb/S120x74ht.u/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fnews%2F202110%2F04%2FNEWS1%2F20211004172014708ufhw.jpg&scode=sports"
-				alt="">
-				<div class="player-news-text">
-					<div class="player-news-title">'롯데전 통산 6승' 임기영, 4연승의 서튼호 제동 걸까</div>
-					<div class="player-news-date">2021.10.04</div>
-				</div>
-			</a> <a href="#" class="player-news"> <img
-				src="//img1.daumcdn.net/thumb/S120x74/?fname=http%3A%2F%2Fimg1.daumcdn.net%2Fkakaotv%2FKAKAOACCOUNT%2F169085279%2Fthumb%2F20211010194128&scode=sports"
-				alt="">
-				<div class="player-news-text">
-					<div class="player-news-title">4구 만에 이닝을 끝마치는 임기영 / 6회말</div>
-					<div class="video-num d-flex">
-						<span class="video-num-icon">▷</span>
-						<div class="video-num-time">
-							<b>317</b> · 21.10.10
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
+		<div class="player-news-list"></div>
 	</section>
 <% } %>
 

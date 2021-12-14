@@ -156,9 +156,10 @@ public class MainDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from writings where ";
+		String sql = "select * from (select * from writings where ";
 		if (type.equals("team")) sql += "teamlist like ?";
 		else sql += "playerlist like ?";
+		sql += "order by w_code desc) where rownum <= 4";
 
 		for (String txt : arr) {
 			conn = JdbcUtil.getConnection();
@@ -197,9 +198,10 @@ public class MainDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from videos where ";
+		String sql = "select * from (select * from videos where ";
 		if (type.equals("team")) sql += "teamlist like ?";
 		else sql += "playerlist like ?";
+		sql += "order by v_code desc) where rownum <= 4";
 
 		for (String txt : arr) {
 			conn = JdbcUtil.getConnection();
