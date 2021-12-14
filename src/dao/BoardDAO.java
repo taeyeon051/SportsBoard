@@ -24,12 +24,11 @@ public class BoardDAO {
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			if (!type.equals("home")) pstmt.setString(1, type);
-			else if (type.equals("keyword")) {
+			if (type.equals("keyword")) {
 				String txt = "%" + key + "%";
 				pstmt.setString(1, txt);
 				pstmt.setString(2, txt);
-			}
+			} else if (!type.equals("home")) pstmt.setString(1, type);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) cnt = rs.getInt("cnt");
