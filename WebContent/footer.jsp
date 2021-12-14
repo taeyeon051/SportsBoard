@@ -25,6 +25,18 @@
 		if (document.location.href.split('?')[0].split('/').splice(4, 1)[0] == "user") {	
 			document.querySelector('#submenu').innerHTML = "";
 		}
+
+        document.querySelector("#search-btn").addEventListener("click", e => { search(); });
+
+        window.addEventListener("keydown", e => {
+            if (e.keyCode == 13 && document.activeElement.id == "search") search();
+        });
+
+        function search() {
+            const text = document.querySelector("#search").value;
+            if (text.trim() === "") return;
+            location.href = '/SportsBoard/board/list?type=keyword&p=1&key=' + text.trim();
+        }
 	</script>
 </body>
 

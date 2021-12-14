@@ -10,7 +10,7 @@ import common.JdbcUtil;
 import vo.BoardVO;
 
 public class BoardDAO {
-	public double getBoardCnt(String type) {
+	public double getBoardCnt(String type, String key) {
 		double cnt = 0;
 		
 		Connection conn = null;
@@ -18,12 +18,18 @@ public class BoardDAO {
 		ResultSet rs = null;
 		String sql = "";
 		if (type.equals("home")) sql = "select count(*) as cnt from writings";
+		else if (type.equals("keyword")) sql = "select count(*) as cnt from writings where title like ? or content like ?";
 		else sql = "select count(*) as cnt from writings where w_type = ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			if (!type.equals("home")) pstmt.setString(1, type);
+			else if (type.equals("keyword")) {
+				String txt = "%" + key + "%";
+				pstmt.setString(1, txt);
+				pstmt.setString(2, txt);
+			}
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) cnt = rs.getInt("cnt");
@@ -36,22 +42,19 @@ public class BoardDAO {
 		return cnt;
 	}
 	
-	public ArrayList<BoardVO> getBoardList(String type, int end) {
+	public ArrayList<BoardVO> getBoardList(String type, int end, String key) {
 		ArrayList<BoardVO> boardList = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "";
+		String sql = "select * from (select row_number() over (order by w_code desc) as num, w.* from writings w";
 		if (type.equals("home")) {
-			sql = "select * "
-					+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w) "
-					+ "where num between ? and ?";
-		} else {			
-			sql = "select * "
-					+ "from (select row_number() over (order by w_code desc) as num, w.* from writings w "
-					+ "where w_type = ?) "
-					+ "where num between ? and ?";
+			sql += ") where num between ? and ?";
+		} else if (type.equals("keyword")) {
+			sql += " where title like ? or content like ?) where num between ? and ?";			
+		} else {
+			sql += " where w_type = ?) where num between ? and ?";
 		}
 		
 		conn = JdbcUtil.getConnection();
@@ -60,6 +63,12 @@ public class BoardDAO {
 			if (type.equals("home")) {
 				pstmt.setInt(1, end - 9);
 				pstmt.setInt(2, end);
+			} else if (type.equals("keyword")) {
+				String txt = "%" + key + "%";
+				pstmt.setString(1, txt);
+				pstmt.setString(2, txt);
+				pstmt.setInt(3, end - 9);
+				pstmt.setInt(4, end);
 			} else {
 				pstmt.setString(1, type);
 				pstmt.setInt(2, end - 9);

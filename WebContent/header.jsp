@@ -56,7 +56,7 @@
         <h3 class="fw-bold mb-0"><a href="<%= path %>/main?type=home">스포츠 게시판</a></h3>
         <div class="input-group">
             <input type="text" class="form-control" id="search" placeholder="통합검색">
-            <button class="btn btn-dark">
+            <button id="search-btn" class="btn btn-dark">
                 <i class="fas fa-search"></i>
             </button>
         </div>
@@ -66,7 +66,7 @@
         <!-- 메뉴 영역 -->
         <div id="menu">
             <div class="inner-menu h-100 mx-auto d-flex align-items-center">
-                <a href="<%= path %>/main?type=home" class="<%= type.equals("home") ? "selected" : "" %>">스포츠홈</a>
+                <a href="<%= path %>/main?type=home" class="<%= type.equals("home") || type.equals("keyword") ? "selected" : "" %>">스포츠홈</a>
                 <a href="<%= path %>/main?type=baseball" class="<%= type.equals("baseball") ? "selected" : "" %>">야구</a>
                 <a href="<%= path %>/main?type=worldbaseball" class="<%= type.equals("worldbaseball") ? "selected" : "" %>">해외야구</a>
                 <a href="<%= path %>/main?type=soccer" class="<%= type.equals("soccer") ? "selected" : "" %>">축구</a>
