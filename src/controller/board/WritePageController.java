@@ -19,7 +19,7 @@ public class WritePageController implements Controller {
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		WriteDAO dao = new WriteDAO();
-		String type = request.getParameter("type");
+		String type = request.getParameter("type"); 
 		
 		if (request.getMethod().equals("GET")) {
 			ArrayList<String> teamList = dao.getTeamList(type);
