@@ -1,5 +1,3 @@
-const log = console.log;
-
 class Main {
     constructor(teamList = '', playerList = '') {
         this.mainBoard = document.querySelector("#photo");
@@ -48,7 +46,6 @@ class Main {
             success: e => {
                 this.getTBList = this.getJson(e, ".blist");
                 this.getTVList = this.getJson(e, ".vlist");
-                log(this.getTBList);
                 const teams = document.querySelector(".teams>ul");
                 teams.innerHTML = "";
                 this.teamsRender(this.teamList, teams, "team");

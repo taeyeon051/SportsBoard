@@ -1,5 +1,3 @@
-const log = console.log;
-
 window.onload = () => {
     const write = new Write();
 }
@@ -152,7 +150,7 @@ class Write {
                 this.makeImgDom(e.trim());
             },
             error: (req, err) => {
-                log(req.status, err);
+                console.log(req.status, err);
                 alert('파일 업로드 중 오류가 발생하였습니다.');
             }
         });

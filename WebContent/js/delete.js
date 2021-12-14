@@ -1,5 +1,3 @@
-const log = console.log;
-
 class Delete {
     constructor(no, writerId, video) {
         this.no = no;
