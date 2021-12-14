@@ -22,6 +22,7 @@
     width: 240px;
     height: 140px;
     object-fit: cover;
+    object-position: center top;
     border-radius: 5px;
 }
 
